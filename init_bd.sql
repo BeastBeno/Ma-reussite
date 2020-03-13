@@ -50,6 +50,7 @@ CREATE TABLE Cours(
 	credit smallint,
     evaluation smallint
 	);
+/*
 CREATE TABLE Emprunts(
 	cote smallint,
 	pret date,
@@ -118,3 +119,5 @@ INSERT INTO Emprunts (cote, pret, retour, id)
 	(8, '2017-05-04', '2017-06-19', 30),
 	(9, '2018-09-15', '2018-11-16', 60),
 	(9, '2017-04-16', '2017-05-12', 10);
+    
+    */
