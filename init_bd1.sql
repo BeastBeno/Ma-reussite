@@ -33,7 +33,7 @@ CREATE TABLE Directeur(
 	numeroTelephone smallint,
     sigleProgramme smallint,
     PRIMARY KEY(mail, sigleProgramme),
-    FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE
+    FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE #Modelisation de la relation possede un directeur
 	);
     
 CREATE TABLE Objectif(
@@ -44,8 +44,8 @@ CREATE TABLE Objectif(
     moyenneFinProgramme smallint,
     moyenneCours smallint,
     idul smallint NOT NULL,
-    PRIMARY KEY(id),
-    FOREIGN KEY(idul) REFERENCES Programme(idul) ON DELETE CASCADE
+    PRIMARY KEY(id), 
+    FOREIGN KEY(idul) REFERENCES Programme(idul) ON DELETE CASCADE #modelisation de la relation posseder
 	);
 
 CREATE TABLE Cours(
