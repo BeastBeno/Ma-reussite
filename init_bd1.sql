@@ -37,11 +37,15 @@ CREATE TABLE Directeur(
 	);
     
 CREATE TABLE Objectif(
-	sessions smallint PRIMARY KEY,
+	id smallint AUTO_INCREMENT,
+	sessions smallint,
 	nom char(40),
 	moyenneSession smallint,
     moyenneFinProgramme smallint,
-    moyenneCours smallint
+    moyenneCours smallint,
+    idul smallint NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(idul) REFERENCES Programme(idul) ON DELETE CASCADE
 	);
 
 CREATE TABLE Cours(
