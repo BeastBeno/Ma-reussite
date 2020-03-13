@@ -22,13 +22,18 @@ CREATE TABLE Programme(
 CREATE TABLE Service(
 	id smallint PRIMARY KEY,
 	nom char(40),
-    disponible varchar(100)
+    disponible varchar(100),
+    sigleProgramme smallint NOT NULL,
+    FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE
 	);
     
 CREATE TABLE Directeur(
-	mail smallint PRIMARY KEY,
+	mail smallint ,
 	nom char(40),
-	numeroTelephone smallint
+	numeroTelephone smallint,
+    sigleProgramme smallint,
+    PRIMARY KEY(mail, sigleProgramme),
+    FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE
 	);
     
 CREATE TABLE Objectif(
