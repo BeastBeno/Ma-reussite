@@ -54,6 +54,16 @@ CREATE TABLE Cours(
 	credit smallint,
     evaluation smallint
 	);
+
+CREATE TABLE Suivre(
+	idul smallint,
+    sigleCours smallint,
+    sessions smallint,
+	moyenne smallint,
+    PRIMARY KEY(idul,  sigleCours),
+    FOREIGN KEY(idul) REFERENCES Programme(idul),
+    FOREIGN KEY(sigleCours) REFERENCES Cours(sigleCours)
+	);
 /*
 CREATE TABLE Emprunts(
 	cote smallint,
