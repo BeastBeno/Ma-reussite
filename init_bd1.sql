@@ -3,12 +3,12 @@ CREATE DATABASE bd_universitaire;
 USE bd_universitaire;
 
 CREATE TABLE Etudiant(
-	idul smallint PRIMARY KEY,
+	idul varchar(100) PRIMARY KEY,
 	nom varchar(100),
-	motDePasse varchar(40),
+	motDePasse varchar(200),
 	motivation smallint,
 	credit smallint,
-	sigleProgramme varchar(100) NOT NULL UNIQUE,
+	sigleProgramme varchar(100) NOT NULL,
 	FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE
 	);
 
@@ -21,17 +21,17 @@ CREATE TABLE Programme(
 	
 CREATE TABLE Service(
 	id smallint PRIMARY KEY,
-	nom char(40),
+	nom varchar(100),
     disponible smallint(1),
-    sigleProgramme smallint NOT NULL,
+    sigleProgramme varchar(100) NOT NULL,
     FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE
 	);
     
 CREATE TABLE Directeur(
-	mail smallint ,
-	nom char(40),
-	numeroTelephone smallint,
-    sigleProgramme smallint,
+	mail varchar(40) ,
+	nom varchar(40),
+	numeroTelephone varchar(100),
+    sigleProgramme varchar(100),
     PRIMARY KEY(mail, sigleProgramme),
     FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE #Modelisation de la relation possede un directeur
 	);
@@ -43,27 +43,42 @@ CREATE TABLE Objectif(
 	moyenneSession smallint,
     moyenneFinProgramme smallint,
     moyenneCours smallint,
-    idul varchar(100) NOT NULL,
+    sigleProgramme varchar(100) NOT NULL,
     PRIMARY KEY(id), 
-    FOREIGN KEY(idul) REFERENCES Programme(idul) ON DELETE CASCADE #modelisation de la relation posseder
+    FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE #modelisation de la relation posseder
 	);
 
 CREATE TABLE Cours(
-	sigleCours smallint PRIMARY KEY,
+	sigleCours varchar(100) PRIMARY KEY,
 	nom char(40),
 	credit smallint,
     evaluation smallint
 	);
 
 CREATE TABLE Suivre(
-	idul smallint,
-    sigleCours smallint,
-    sessions smallint,
+	idul varchar(100),
+    sigleCours varchar(100),
+    sessions varchar(100),
 	moyenne smallint,
     PRIMARY KEY(idul,  sigleCours),
-    FOREIGN KEY(idul) REFERENCES Programme(idul),
+    FOREIGN KEY(idul) REFERENCES Etudiant(idul),
     FOREIGN KEY(sigleCours) REFERENCES Cours(sigleCours)
 	);
+INSERT INTO Programme(sigleProgramme, nom,  credit)
+	VALUE
+	('GMC','Génie mécanique' , 120),
+    ('GCI','Génie civil' , 120),
+    ('GEX','Génie des eaux' , 120),
+    ('ENV','Environnement' , 120),
+    ('GCH','Génie chimique' , 120),
+    ('GIN','Génie industriel' , 120),
+    ('GEL','Génie électrique' , 120),
+    ('GLO','Génie logiciel' , 120),
+    ('GGL','Génie géologique' , 120),
+    ('GMN','Génie des mines et de la minéralurgie' , 120),
+    ('GIF','Génie informatique' , 120),
+    ('GPH','Génie physique' , 120);
+
 INSERT INTO Etudiant(idul, nom, motDePasse, motivation, credit, sigleProgramme)
 	VALUE
 	('DIBAX', 'Diete Baxter', 'c6b46dc21387f8c4a4c3cd1eab631b8e94494244b84203bb1e9003852163b692', 7, 66, 'GIF'),
@@ -266,19 +281,21 @@ INSERT INTO Etudiant(idul, nom, motDePasse, motivation, credit, sigleProgramme)
     ('LASHA', 'Latifa Shay', '7b62828ffc7d85339ed37aa7dc11fe5c9915bde4daa3238678f557da59462604', 4, 117, 'GEX'),
     ('RACOU', 'Ran Courtney', 'a48c3ae2b6e6c3aeb4b6cf32b7fd27cc44887c76d5355b81d5ef8be5fab670be', 5, 107, 'GPH'),
     ('BELIL', 'Be Lila', '6d16b47e970c1308d237705096160748e972f7b1647c82de0f5ea763998cd99e', 4, 111, 'GMN');
-INSERT INTO Programme(sigleProgramme, nom,  credit)
-	VALUE
-	('GLO', 'Genie Logiciel', 120);
+
 INSERT INTO Service(id, nom, disponible, sigleProgramme)
 	VALUE
-	(12345, 'CDA',1, 'GLO');
+	(1235, 'CDA',1, 'GLO'),
+	(1234, 'SPLA',0, 'GLO'),
+	(3366, 'CARRE',1, 'GLO'),
+	(3466, 'Gestion des études',0, 'GLO'),
+	(4143, 'Gestion des études',1, 'GLO');
 INSERT INTO directeur(mail, nom, numeroTelephone, sigleProgramme)
 	VALUE
-	('Brahim.Chaib-draa@ift.ulaval.ca',  'Brahim Chaib-draa', 4186562131, 'GLO');
-INSERT INTO Objectif(id, session, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
+	('Brahim.Chaib-draa@ift.ulaval.ca',  'Brahim Chaib-draa', '418 656-2131 poste 403346', 'GLO');
+INSERT INTO Objectif(id, sessions, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
 	VALUE
 	(2,  'Hiver', 'Tout Peter', 3, 3.45, 4, 'GLO');
-INSERT INTO Cours(id, session, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
+INSERT INTO Cours(id, sessions, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
 	VALUE
 	(2,  'Hiver', 'Tout Peter', 3, 3.45, 4, 'GLO');
 INSERT INTO Suivre(idul, sigleCours, sessions, moyenne)
