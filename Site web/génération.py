@@ -43,7 +43,7 @@ with open('nom prenom.txt', 'r') as fich:
         print(idul)
         lis.append(idul)
 
-        b = "('" + idul + "', " + "'" + liste[1] + " " + liste[0] + "'" + ", " + "'" + randomStringDigits(8) +", " + str(random.randrange(0, 10)) + ", " + str(random.randrange(0, 120)) + ", '" + random.choice(sigle) + "')"
+        b = "('" + idul + "', " + "'" + liste[1] + " " + liste[0] + "'" + ", " + "'" + randomStringDigits(8) +"', " + str(random.randrange(0, 10)) + ", " + str(random.randrange(0, 120)) + ", '" + random.choice(sigle) + "')"
         fichier.write("\n" + b)
     fichier.close()
 for x in range(len(lis)):
