@@ -82,6 +82,9 @@ INSERT INTO Objectif(id, session, nom, moyenneSession, moyenneFinProgramme, moye
 INSERT INTO Cours(id, session, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
 	VALUE
 	(2,  'Hiver', 'Tout Peter', 3, 3.45, 4, 'GLO');
+INSERT INTO Suivre(idul, sigleCours, sessions, moyenne)
+	VALUE
+	('DIBAX',  'MAT-1910', 'Hiver', 3);
 
 /*
 CREATE TABLE Emprunts(
@@ -94,9 +97,9 @@ CREATE TABLE Emprunts(
 	FOREIGN KEY(id) REFERENCES Utilisateurs(id) ON DELETE CASCADE
 	);
 
-INSERT INTO Suivre(id, session, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
+INSERT INTO Suivre(idul, sigleCours, sessions, moyenne)
 	VALUE
-	(2,  'Hiver', 'Tout Peter', 3, 3.45, 4, 'GLO');
+	('DIBAX',  'MAT-1910', 'Hiver', 3);
 	
 INSERT INTO Copies(cote, isbn, disponible)
 	VALUE
