@@ -79,6 +79,9 @@ INSERT INTO directeur(mail, nom, numeroTelephone, sigleProgramme)
 INSERT INTO Objectif(id, session, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
 	VALUE
 	(2,  'Hiver', 'Tout Peter', 3, 3.45, 4, 'GLO');
+INSERT INTO Cours(id, session, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
+	VALUE
+	(2,  'Hiver', 'Tout Peter', 3, 3.45, 4, 'GLO');
 
 /*
 CREATE TABLE Emprunts(
@@ -91,7 +94,7 @@ CREATE TABLE Emprunts(
 	FOREIGN KEY(id) REFERENCES Utilisateurs(id) ON DELETE CASCADE
 	);
 
-INSERT INTO Cours(id, session, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
+INSERT INTO Suivre(id, session, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
 	VALUE
 	(2,  'Hiver', 'Tout Peter', 3, 3.45, 4, 'GLO');
 	
