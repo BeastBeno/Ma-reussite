@@ -10,10 +10,10 @@ for i in sigleprogramme:
 
 for i in newsigle:
     sigle.append(i[0])
-    siglefinal.append("('" + i[0] + "', '" + i[1] + "' , 120)")
+    siglefinal.append("('" + i[0] + "','" + i[1] + "' , 120),")
 fichier = open("listeSigle.txt", "w")
 for char in siglefinal:
-    fichier.write("\n" + char)
+    fichier.write(char + "\n")
 fichier.close()
 
 
@@ -43,8 +43,8 @@ with open('nom prenom.txt', 'r') as fich:
         print(idul)
         lis.append(idul)
 
-        b = "('" + idul + "', " + "'" + liste[1] + " " + liste[0] + "'" + ", " + "'" + randomStringDigits(8) +"', " + str(random.randrange(0, 10)) + ", " + str(random.randrange(0, 120)) + ", '" + random.choice(sigle) + "')"
-        fichier.write("\n" + b)
+        b = "('" + idul + "', " + "'" + liste[1] + " " + liste[0] + "'" + ", " + "'" + randomStringDigits(8) +"', " + str(random.randrange(0, 10)) + ", " + str(random.randrange(0, 120)) + ", '" + random.choice(sigle) + "'),"
+        fichier.write(b + "\n")
     fichier.close()
 for x in range(len(lis)):
     for y in range(x+1, len(lis)):
