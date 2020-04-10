@@ -197,4 +197,4 @@
 ('BRMAL', 'Brittan Mallory', 'dRcrTWW2', 1, 51, 'GIF')
 ('LASHA', 'Latifa Shay', 'GoU5C6BB', 9, 38, 'GIN')
 ('RACOU', 'Ran Courtney', '5esoP98t', 6, 48, 'GCI')
-('BELIL', 'Be Lila', '0TBB3j5h', 0, 20, 'GIN')
+('BELIL', 'Bell Lila', '0TBB3j5h', 0, 20, 'GIN')
