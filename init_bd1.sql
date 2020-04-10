@@ -15,8 +15,7 @@ CREATE TABLE Etudiant(
 CREATE TABLE Programme(
 	sigleProgramme smallint PRIMARY KEY,
     nom varchar(100),
-	credit smallint,
-	disponible smallint(1)
+	credit smallint
 	);
 
 	
@@ -68,6 +67,9 @@ CREATE TABLE Suivre(
 INSERT INTO Etudiant(idul, nom, motDePasse, motivation, credit, sigleProgramme)
 	VALUE
 	('DIBAX', 'Baxter Dieter', 'jsbvssdsd', 1, 0, GLO);
+INSERT INTO Programme(sigleProgramme, nom,  credit)
+	VALUE
+	('GLO', 'Genie Logiciel', 120);
 /*
 CREATE TABLE Emprunts(
 	cote smallint,
@@ -79,9 +81,9 @@ CREATE TABLE Emprunts(
 	FOREIGN KEY(id) REFERENCES Utilisateurs(id) ON DELETE CASCADE
 	);
 
-INSERT INTO Etudiant(idul, nom, motDePasse, motivation, credit, sigleProgramme)
+INSERT INTO Programme(sigleProgramme, nom,  credit)
 	VALUE
-	('DIBAX', 'Baxter Dieter', 'jsbvssdsd', 1, 0, GLO);
+	('GLO', 'Genie Logiciel', 120);
 	
 INSERT INTO Copies(cote, isbn, disponible)
 	VALUE
