@@ -9,4 +9,4 @@
 ('GGL',' Génie géologique' , 120),
 ('GMN',' Génie des mines et de la minéralurgie' , 120),
 ('GIF','	Génie informatique' , 120),
-('GPH',' Génie physique' , 120),
+('GPH',' Génie physique' , 120);
