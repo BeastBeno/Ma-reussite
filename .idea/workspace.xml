@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b85430dd-58d9-494d-a2ae-7c4b0472e8c4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Site web/listeEtudiant.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Site web/listeEtudiant.txt" afterDir="false" />
-    </list>
+    <list default="true" id="b85430dd-58d9-494d-a2ae-7c4b0472e8c4" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,23 +106,31 @@
       <option name="project" value="LOCAL" />
       <updated>1586550740542</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Ajout listeEtudiant.txt et listeSigle.txt update">
+      <created>1586552080091</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1586552080091</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ajout db name" />
     <MESSAGE value="Ajout listeEtudiant.txt et listeSigle.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout listeEtudiant.txt et listeSigle.txt" />
+    <MESSAGE value="Ajout listeEtudiant.txt et listeSigle.txt update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout listeEtudiant.txt et listeSigle.txt update" />
   </component>
   <component name="WindowStateProjectService">
     <state x="500" y="161" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586549537433">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="500" y="161" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1586549537433" />
-    <state x="425" y="9" key="CommitChangelistDialog2" timestamp="1586550739543">
+    <state x="425" y="9" key="CommitChangelistDialog2" timestamp="1586552079007">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586550739543" />
+    <state x="425" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586552079007" />
     <state width="1515" height="155" key="GridCell.Tab.0.bottom" timestamp="1586550719233">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
