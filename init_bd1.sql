@@ -8,12 +8,12 @@ CREATE TABLE Etudiant(
 	motDePasse varchar(40),
 	motivation smallint,
 	credit smallint,
-	sigleProgramme smallint NOT NULL UNIQUE,
+	sigleProgramme varchar(100) NOT NULL UNIQUE,
 	FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE
 	);
 
 CREATE TABLE Programme(
-	sigleProgramme smallint PRIMARY KEY,
+	sigleProgramme varchar(100) PRIMARY KEY,
     nom varchar(100),
 	credit smallint
 	);
@@ -22,7 +22,7 @@ CREATE TABLE Programme(
 CREATE TABLE Service(
 	id smallint PRIMARY KEY,
 	nom char(40),
-    disponible varchar(100),
+    disponible smallint(1),
     sigleProgramme smallint NOT NULL,
     FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE
 	);
@@ -70,6 +70,13 @@ INSERT INTO Etudiant(idul, nom, motDePasse, motivation, credit, sigleProgramme)
 INSERT INTO Programme(sigleProgramme, nom,  credit)
 	VALUE
 	('GLO', 'Genie Logiciel', 120);
+INSERT INTO Service(id, nom, disponible, sigleProgramme)
+	VALUE
+	(12345, 'CDA',1, 'GLO');
+INSERT INTO directeur(mail, nom, numeroTelephone, sigleProgramme)
+	VALUE
+	('Brahim.Chaib-draa@ift.ulaval.ca',  'Brahim Chaib-draa', 4186562131, 'GLO');
+
 /*
 CREATE TABLE Emprunts(
 	cote smallint,
@@ -81,9 +88,9 @@ CREATE TABLE Emprunts(
 	FOREIGN KEY(id) REFERENCES Utilisateurs(id) ON DELETE CASCADE
 	);
 
-INSERT INTO Programme(sigleProgramme, nom,  credit)
+INSERT INTO Objectif(id, session, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
 	VALUE
-	('GLO', 'Genie Logiciel', 120);
+	('Brahim.Chaib-draa@ift.ulaval.ca',  'Brahim Chaib-draa', 4186562131, 'GLO');
 	
 INSERT INTO Copies(cote, isbn, disponible)
 	VALUE
