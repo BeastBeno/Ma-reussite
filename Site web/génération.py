@@ -1,5 +1,6 @@
 import random
 import string
+import hashlib
 
 lis, newsigle, sigle, siglefinal = [], [], [], []
 sigleprogramme = ["GMC,	Génie mécanique", "GCI,	Génie civil", "GEX,	Génie des eaux", "ENV, Environnement", "GCH, Génie chimique", "GIN,	Génie industriel", "GEL, Génie électrique", "GLO, Génie logiciel", "GGL, Génie géologique", "GMN, Génie des mines et de la minéralurgie", "GIF,	Génie informatique", "GPH, Génie physique"]
@@ -16,6 +17,9 @@ for char in siglefinal:
     fichier.write(char + "\n")
 fichier.close()
 
+
+def makehash(password):
+    return hashlib.sha256(str.encode(password)).hexdigest()
 
 
 
@@ -37,13 +41,13 @@ with open('nom prenom.txt', 'r') as fich:
         liste.append(a)
 
         liste.append(li[1][:-2])
-        print(liste)
+
         idul = liste[1][:2] + liste[0][:3]
         idul = idul.upper()
-        print(idul)
+
         lis.append(idul)
 
-        b = "('" + idul + "', " + "'" + liste[1] + " " + liste[0] + "'" + ", " + "'" + randomStringDigits(8) +"', " + str(random.randrange(0, 10)) + ", " + str(random.randrange(0, 120)) + ", '" + random.choice(sigle) + "'),"
+        b = "('" + idul + "', " + "'" + liste[1] + " " + liste[0] + "'" + ", " + "'" + makehash(randomStringDigits(8)) +"', " + str(random.randrange(0, 10)) + ", " + str(random.randrange(0, 120)) + ", '" + random.choice(sigle) + "'),"
         fichier.write(b + "\n")
     fichier.close()
 for x in range(len(lis)):
