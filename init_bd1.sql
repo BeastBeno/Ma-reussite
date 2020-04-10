@@ -38,12 +38,12 @@ CREATE TABLE Directeur(
     
 CREATE TABLE Objectif(
 	id smallint AUTO_INCREMENT,
-	sessions smallint,
+	sessions varchar(100),
 	nom char(40),
 	moyenneSession smallint,
     moyenneFinProgramme smallint,
     moyenneCours smallint,
-    idul smallint NOT NULL,
+    idul varchar(100) NOT NULL,
     PRIMARY KEY(id), 
     FOREIGN KEY(idul) REFERENCES Programme(idul) ON DELETE CASCADE #modelisation de la relation posseder
 	);
@@ -76,6 +76,9 @@ INSERT INTO Service(id, nom, disponible, sigleProgramme)
 INSERT INTO directeur(mail, nom, numeroTelephone, sigleProgramme)
 	VALUE
 	('Brahim.Chaib-draa@ift.ulaval.ca',  'Brahim Chaib-draa', 4186562131, 'GLO');
+INSERT INTO Objectif(id, session, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
+	VALUE
+	(2,  'Hiver', 'Tout Peter', 3, 3.45, 4, 'GLO');
 
 /*
 CREATE TABLE Emprunts(
@@ -88,9 +91,9 @@ CREATE TABLE Emprunts(
 	FOREIGN KEY(id) REFERENCES Utilisateurs(id) ON DELETE CASCADE
 	);
 
-INSERT INTO Objectif(id, session, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
+INSERT INTO Cours(id, session, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
 	VALUE
-	('Brahim.Chaib-draa@ift.ulaval.ca',  'Brahim Chaib-draa', 4186562131, 'GLO');
+	(2,  'Hiver', 'Tout Peter', 3, 3.45, 4, 'GLO');
 	
 INSERT INTO Copies(cote, isbn, disponible)
 	VALUE
@@ -98,7 +101,6 @@ INSERT INTO Copies(cote, isbn, disponible)
 	(1, 1234, 0),
 	(2, 1234, 0),
 	(3, 2345, 0),
-	(4, 3456, 1),
 	(5, 4567, 1),
 	(6, 5678, 0),
 	(7, 5678, 0),
