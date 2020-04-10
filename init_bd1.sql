@@ -7,15 +7,16 @@ CREATE TABLE Etudiant(
 	nom varchar(100),
 	motDePasse varchar(40),
 	motivation smallint,
-	credit smallint
+	credit smallint,
+	sigleProgramme smallint NOT NULL UNIQUE,
+	FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE
 	);
 
 CREATE TABLE Programme(
 	sigleProgramme smallint PRIMARY KEY,
     nom varchar(100),
 	credit smallint,
-	disponible smallint(1),
-	FOREIGN KEY(isbn) REFERENCES Livres(isbn) ON DELETE CASCADE
+	disponible smallint(1)
 	);
 
 	
