@@ -65,6 +65,9 @@ CREATE TABLE Suivre(
     FOREIGN KEY(idul) REFERENCES Programme(idul),
     FOREIGN KEY(sigleCours) REFERENCES Cours(sigleCours)
 	);
+INSERT INTO Etudiant(idul, nom, motDePasse, motivation, credit, sigleProgramme)
+	VALUE
+	('DIBAX', 'Baxter Dieter', 'jsbvssdsd', 1, 0, GLO);
 /*
 CREATE TABLE Emprunts(
 	cote smallint,
@@ -76,15 +79,9 @@ CREATE TABLE Emprunts(
 	FOREIGN KEY(id) REFERENCES Utilisateurs(id) ON DELETE CASCADE
 	);
 
-INSERT INTO Livres(isbn, titre, auteur, edition, annee, age)
+INSERT INTO Etudiant(idul, nom, motDePasse, motivation, credit, sigleProgramme)
 	VALUE
-	(1234, 'La vie locale', 'Tom Tremblay', 1, 1978, 18),
-	(2345, 'Nos amis les animaux', 'Billy Boutin', 1, 2005, 8),
-	(3456, '99 ballons rouges', 'Wilson Wong', 1 ,2015, 13),
-	(4567, 'Une epingle', 'Tom Tremblay', 2, 1999, 13),
-	(5678, 'Les neuf vies de Garfield', 'Billy Boutin', 4, 1985, 0),
-	(6789, 'L art de la comedie', 'Roger Rabbit', 3, null, 8),
-	(7890, 'L art de la comedie', 'Tom Tremblay', 1, 2017, 18);
+	('DIBAX', 'Baxter Dieter', 'jsbvssdsd', 1, 0, GLO);
 	
 INSERT INTO Copies(cote, isbn, disponible)
 	VALUE
