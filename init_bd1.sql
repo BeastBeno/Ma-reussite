@@ -2,6 +2,12 @@ DROP database IF EXISTS bd_universitaire;
 CREATE DATABASE bd_universitaire;
 USE bd_universitaire;
 
+CREATE TABLE Programme(
+	sigleProgramme varchar(100) PRIMARY KEY,
+    nom varchar(100),
+	credit smallint
+	);
+
 CREATE TABLE Etudiant(
 	idul varchar(100) PRIMARY KEY,
 	nom varchar(100),
@@ -10,12 +16,6 @@ CREATE TABLE Etudiant(
 	credit smallint,
 	sigleProgramme varchar(100) NOT NULL,
 	FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE
-	);
-
-CREATE TABLE Programme(
-	sigleProgramme varchar(100) PRIMARY KEY,
-    nom varchar(100),
-	credit smallint
 	);
 
 	
@@ -50,7 +50,7 @@ CREATE TABLE Objectif(
 
 CREATE TABLE Cours(
 	sigleCours varchar(100) PRIMARY KEY,
-	nom char(40),
+	nom varchar(100),
 	credit smallint,
     evaluation smallint
 	);
@@ -292,15 +292,16 @@ INSERT INTO Service(id, nom, disponible, sigleProgramme)
 INSERT INTO directeur(mail, nom, numeroTelephone, sigleProgramme)
 	VALUE
 	('Brahim.Chaib-draa@ift.ulaval.ca',  'Brahim Chaib-draa', '418 656-2131 poste 403346', 'GLO');
-INSERT INTO Objectif(id, sessions, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
+INSERT INTO Objectif(id, sessions, nom, moyenneSession, moyenneFinProgramme, moyenneCours, sigleProgramme)
 	VALUE
 	(2,  'Hiver', 'Tout Peter', 3, 3.45, 4, 'GLO');
-INSERT INTO Cours(id, sessions, nom, moyenneSession, moyenneFinProgramme, moyenneCours, idul)
+
+INSERT INTO Cours(sigleCours, nom, credit, evaluation)
 	VALUE
-	(2,  'Hiver', 'Tout Peter', 3, 3.45, 4, 'GLO');
+	('MAT-1910',  'Math de ingenieur I', 3, 4);
 INSERT INTO Suivre(idul, sigleCours, sessions, moyenne)
 	VALUE
-	('DIBAX',  'MAT-1910', 'Hiver', 3);
+	('GAJAC',  'MAT-1910', 'Hiver', 3);
 
 /*
 CREATE TABLE Emprunts(
