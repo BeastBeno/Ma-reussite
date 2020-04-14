@@ -58,7 +58,7 @@ CREATE TABLE Cours(
     evaluation smallint,
     prealables varchar(400),
     programmes varchar(400),
-    typeCours varchar(1)
+    typeCours varchar(100)
 	);
 
 CREATE TABLE Suivre(
@@ -305,7 +305,7 @@ INSERT INTO Objectif(idul,id, sessions, nom, moyenneSession, moyenneFinProgramme
 
 INSERT INTO Cours(sigleCours, nom, credit, evaluation, prealables, programmes, typeCours)
 	VALUE
-	('MAT-1910',  'Math de ingenieur I', 3, 4, 'MAT-0260', 'GLO,GIF,GEL,GPH,GEX,GCI,GMC,GMN,GIN', 'o');
+	('MAT-1910',  'Math de ingenieur I', 3, 4, 'MAT-0260', 'GLO,GIF,GEL,GPH,GEX,GCI,GMC,GMN,GIN', 'o,o,o,o,o,o,o,o,o');
 INSERT INTO Suivre(idul, sigleCours, sessions, moyenne)
 	VALUE
 	('GAJAC',  'MAT-1910', 'Hiver', 3);
