@@ -5,9 +5,7 @@ USE bd_universitaire;
 CREATE TABLE Programme(
 	sigleProgramme varchar(100) PRIMARY KEY,
     nom varchar(100),
-	credit smallint,
-	regle varchar(7),
-	creditRegle varchar(7)
+	credit smallint
 	);
 
 CREATE TABLE Etudiant(
@@ -20,7 +18,6 @@ CREATE TABLE Etudiant(
 	FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE
 	);
 
-	
 CREATE TABLE Service(
 	id smallint PRIMARY KEY,
 	nom varchar(100),
@@ -73,20 +70,31 @@ CREATE TABLE Suivre(
     FOREIGN KEY(idul) REFERENCES Etudiant(idul),
     FOREIGN KEY(sigleCours) REFERENCES Cours(sigleCours)
 	);
-INSERT INTO Programme(sigleProgramme, nom,  credit, regle, creditRegle)
+
+CREATE TABLE Concentration(
+	id smallint PRIMARY KEY,
+	nom varchar(100),
+	regle varchar(7),
+	creditRegle varchar(7),
+	sigleCours varchar(200),
+	typeCours varchar(200),
+	sigleProgramme varchar(100) NOT NULL,
+	FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE
+	);
+INSERT INTO Programme(sigleProgramme, nom, credit)
 	VALUE
-	('GMC','Génie mécanique' , 120, '1,2,3', '15,3,3'),
-    ('GCI','Génie civil' , 120, '1,2,3', '15,3,3'),
-    ('GEX','Génie des eaux' , 120, '1,2,3', '15,3,3'),
-    ('ENV','Environnement' , 120, '1,2,3', '15,3,3'),
-    ('GCH','Génie chimique' , 120, '1,2,3', '15,3,3'),
-    ('GIN','Génie industriel' , 120, '1,2,3', '15,3,3'),
-    ('GEL','Génie électrique' , 120, '1,2,3', '15,3,3'),
-    ('GLO','Génie logiciel' , 120, '1,2,3', '15,3,3'),
-    ('GGL','Génie géologique' , 120, '1,2,3', '15,3,3'),
-    ('GMN','Génie des mines et de la minéralurgie' , 120, '1,2,3', '15,3,3'),
-    ('GIF','Génie informatique' , 120, '1,2,3', '15,3,3'),
-    ('GPH','Génie physique' , 120, '1,2,3', '15,3,3');
+	('GMC','Génie mécanique' , 120),
+    ('GCI','Génie civil' , 120),
+    ('GEX','Génie des eaux' , 120),
+    ('ENV','Environnement' , 120),
+    ('GCH','Génie chimique' , 120),
+    ('GIN','Génie industriel' , 120),
+    ('GEL','Génie électrique' , 120),
+    ('GLO','Génie logiciel' , 120),
+    ('GGL','Génie géologique' , 120),
+    ('GMN','Génie des mines et de la minéralurgie' , 120),
+    ('GIF','Génie informatique' , 120),
+    ('GPH','Génie physique' , 120);
 
 INSERT INTO Etudiant(idul, nom, motDePasse, motivation, credit, sigleProgramme)
 	VALUE
@@ -309,6 +317,10 @@ INSERT INTO Objectif(idul,id, sessions, nom, concentration, moyenneSession, moye
 INSERT INTO Cours(sigleCours, nom, credit, evaluation, prealables, programmes, typeCours)
 	VALUE
 	('MAT-1910',  'Math de ingenieur I', 3, 4, 'MAT-0260', 'GLO,GIF,GEL,GPH,GEX,GCI,GMC,GMN,GIN', 'o,o,o,o,o,o,o,o,o');
+
+INSERT INTO Concentration(id, nom, regle, creditRegle, sigleCours, typeCours, sigleProgramme)
+    Value
+    (123, 'Traitement de donnees massive', '1,2,3,4', '3,9,3,9', 'ANL-2020,GLO-4027,GLO-4035,GIF-4101,GIF-4104,GLO-4030,IFT-4001,IFT-4002,STT-2200,EDC-4000,BCM-1001', 'o,o,o,p,p,p,p,p,p,p,h,s', 'GLO');
 INSERT INTO Suivre(idul, sigleCours, sessions, moyenne)
 	VALUE
 	('GAJAC',  'MAT-1910', 'Hiver', 3);
