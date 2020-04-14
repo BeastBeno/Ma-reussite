@@ -55,7 +55,10 @@ CREATE TABLE Cours(
 	sigleCours varchar(100) PRIMARY KEY,
 	nom varchar(100),
 	credit smallint,
-    evaluation smallint
+    evaluation smallint,
+    prealables varchar(400),
+    programmes varchar(400),
+    typeCours varchar(1)
 	);
 
 CREATE TABLE Suivre(
@@ -300,9 +303,9 @@ INSERT INTO Objectif(idul,id, sessions, nom, moyenneSession, moyenneFinProgramme
 	('RACOU', 1,  'Hiver', 'Tout Peter', 3, 3.45, 4, 'GLO'),
 	('RACOU', 3, 'Hiver', 'Tout Peter', 3, 3.45, 4, 'GLO');
 
-INSERT INTO Cours(sigleCours, nom, credit, evaluation)
+INSERT INTO Cours(sigleCours, nom, credit, evaluation, prealables, programmes, typeCours)
 	VALUE
-	('MAT-1910',  'Math de ingenieur I', 3, 4);
+	('MAT-1910',  'Math de ingenieur I', 3, 4, 'MAT-0260', 'GLO,GIF,GEL,GPH,GEX,GCI,GMC,GMN,GIN', 'o');
 INSERT INTO Suivre(idul, sigleCours, sessions, moyenne)
 	VALUE
 	('GAJAC',  'MAT-1910', 'Hiver', 3);
