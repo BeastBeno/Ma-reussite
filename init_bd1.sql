@@ -5,7 +5,9 @@ USE bd_universitaire;
 CREATE TABLE Programme(
 	sigleProgramme varchar(100) PRIMARY KEY,
     nom varchar(100),
-	credit smallint
+	credit smallint,
+	regle varchar(7),
+	creditRegle varchar(7)
 	);
 
 CREATE TABLE Etudiant(
@@ -41,6 +43,7 @@ CREATE TABLE Objectif(
 	id smallint AUTO_INCREMENT,
 	sessions varchar(100),
 	nom char(40),
+	concentration varchar(100),
 	moyenneSession smallint,
     moyenneFinProgramme smallint,
     moyenneCours smallint,
@@ -70,20 +73,20 @@ CREATE TABLE Suivre(
     FOREIGN KEY(idul) REFERENCES Etudiant(idul),
     FOREIGN KEY(sigleCours) REFERENCES Cours(sigleCours)
 	);
-INSERT INTO Programme(sigleProgramme, nom,  credit)
+INSERT INTO Programme(sigleProgramme, nom,  credit, regle, creditRegle)
 	VALUE
-	('GMC','Génie mécanique' , 120),
-    ('GCI','Génie civil' , 120),
-    ('GEX','Génie des eaux' , 120),
-    ('ENV','Environnement' , 120),
-    ('GCH','Génie chimique' , 120),
-    ('GIN','Génie industriel' , 120),
-    ('GEL','Génie électrique' , 120),
-    ('GLO','Génie logiciel' , 120),
-    ('GGL','Génie géologique' , 120),
-    ('GMN','Génie des mines et de la minéralurgie' , 120),
-    ('GIF','Génie informatique' , 120),
-    ('GPH','Génie physique' , 120);
+	('GMC','Génie mécanique' , 120, '1,2,3', '15,3,3'),
+    ('GCI','Génie civil' , 120, '1,2,3', '15,3,3'),
+    ('GEX','Génie des eaux' , 120, '1,2,3', '15,3,3'),
+    ('ENV','Environnement' , 120, '1,2,3', '15,3,3'),
+    ('GCH','Génie chimique' , 120, '1,2,3', '15,3,3'),
+    ('GIN','Génie industriel' , 120, '1,2,3', '15,3,3'),
+    ('GEL','Génie électrique' , 120, '1,2,3', '15,3,3'),
+    ('GLO','Génie logiciel' , 120, '1,2,3', '15,3,3'),
+    ('GGL','Génie géologique' , 120, '1,2,3', '15,3,3'),
+    ('GMN','Génie des mines et de la minéralurgie' , 120, '1,2,3', '15,3,3'),
+    ('GIF','Génie informatique' , 120, '1,2,3', '15,3,3'),
+    ('GPH','Génie physique' , 120, '1,2,3', '15,3,3');
 
 INSERT INTO Etudiant(idul, nom, motDePasse, motivation, credit, sigleProgramme)
 	VALUE
@@ -298,10 +301,10 @@ INSERT INTO Service(id, nom, disponible, sigleProgramme)
 INSERT INTO directeur(mail, nom, numeroTelephone, sigleProgramme)
 	VALUE
 	('Brahim.Chaib-draa@ift.ulaval.ca',  'Brahim Chaib-draa', '418 656-2131 poste 403346', 'GLO');
-INSERT INTO Objectif(idul,id, sessions, nom, moyenneSession, moyenneFinProgramme, moyenneCours, sigleProgramme)
+INSERT INTO Objectif(idul,id, sessions, nom, concentration, moyenneSession, moyenneFinProgramme, moyenneCours, sigleProgramme)
 	VALUE
-	('RACOU', 1,  'Hiver', 'Tout Peter', 3, 3.45, 4, 'GLO'),
-	('RACOU', 3, 'Hiver', 'Tout Peter', 3, 3.45, 4, 'GLO');
+	('RACOU', 1,  'Hiver', 'Tout Peter', 'Traitement de donnee Massive', 3, 3.45, 4, 'GLO'),
+	('RACOU', 2, 'Hiver', 'Tout Peter', 'Traitement de donnee Massive', 3, 3.45, 4, 'GLO');
 
 INSERT INTO Cours(sigleCours, nom, credit, evaluation, prealables, programmes, typeCours)
 	VALUE
