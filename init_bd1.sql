@@ -55,10 +55,7 @@ CREATE TABLE Cours(
 	sigleCours varchar(100) PRIMARY KEY,
 	nom varchar(100),
 	credit smallint,
-    evaluation smallint,
-    prealables varchar(400),
-    programmes varchar(400),
-    typeCours varchar(100)
+    evaluation smallint
 	);
 
 CREATE TABLE Suivre(
@@ -74,12 +71,20 @@ CREATE TABLE Suivre(
 CREATE TABLE Concentration(
 	id smallint PRIMARY KEY,
 	nom varchar(100),
-	regle varchar(7),
-	creditRegle varchar(7),
-	sigleCours varchar(200),
-	typeCours varchar(200),
 	sigleProgramme varchar(100) NOT NULL,
 	FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE
+	);
+
+CREATE TABLE Appartient(
+	id smallint PRIMARY KEY,
+	sigleProgramme varchar(100),
+	sigleCours varchar(200),
+	typeCours varchar(1),
+	disponibilite varchar(3),
+	regle varchar(1),
+	creditRegle varchar(1),
+	FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE,
+	FOREIGN KEY(sigleCours) REFERENCES Cours(sigleCours) ON DELETE CASCADE
 	);
 INSERT INTO Programme(sigleProgramme, nom, credit)
 	VALUE
@@ -314,13 +319,18 @@ INSERT INTO Objectif(idul,id, sessions, nom, concentration, moyenneSession, moye
 	('RACOU', 1,  'Hiver', 'Tout Peter', 'Traitement de donnee Massive', 3, 3.45, 4, 'GLO'),
 	('RACOU', 2, 'Hiver', 'Tout Peter', 'Traitement de donnee Massive', 3, 3.45, 4, 'GLO');
 
-INSERT INTO Cours(sigleCours, nom, credit, evaluation, prealables, programmes, typeCours)
+INSERT INTO Cours(sigleCours, nom, credit, evaluation)
 	VALUE
-	('MAT-1910',  'Math de ingenieur I', 3, 4, 'MAT-0260', 'GLO,GIF,GEL,GPH,GEX,GCI,GMC,GMN,GIN', 'o,o,o,o,o,o,o,o,o');
+	('MAT-1910',  'Math de ingenieur I', 3, 4);
 
-INSERT INTO Concentration(id, nom, regle, creditRegle, sigleCours, typeCours, sigleProgramme)
+INSERT INTO Concentration(id, nom, sigleProgramme)
     Value
-    (123, 'Traitement de donnees massive', '1,2,3,4', '3,9,3,9', 'ANL-2020,GLO-4027,GLO-4035,GIF-4101,GIF-4104,GLO-4030,IFT-4001,IFT-4002,STT-2200,EDC-4000,BCM-1001', 'o,o,o,p,p,p,p,p,p,p,h,s', 'GLO');
+    (122, 'Traitement de donnees massive', 'GLO');
+
+INSERT INTO Appartient(id, sigleProgramme, sigleCours,typeCours,disponibilite, regle, creditRegle)
+    Value
+    (123, 'GLO', 'GLO-4027', 'o', 'H', '3', '9');
+
 INSERT INTO Suivre(idul, sigleCours, sessions, moyenne)
 	VALUE
 	('GAJAC',  'MAT-1910', 'Hiver', 3);
