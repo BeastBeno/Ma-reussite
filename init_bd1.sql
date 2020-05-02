@@ -78,7 +78,7 @@ CREATE TABLE Concentration(
 CREATE TABLE Appartient(
 	id smallint PRIMARY KEY,
 	sigleProgramme varchar(100),
-	sigleCours varchar(200),
+	sigleCours varchar(100),
 	typeCours varchar(1),
 	disponibilite varchar(3),
 	regle varchar(1),
@@ -329,7 +329,7 @@ INSERT INTO Concentration(id, nom, sigleProgramme)
 
 INSERT INTO Appartient(id, sigleProgramme, sigleCours,typeCours,disponibilite, regle, creditRegle)
     Value
-    (123, 'GLO', 'GLO-4027', 'o', 'H', '3', '9');
+    (123, 'GLO', 'MAT-1910', 'o', 'H', '3', '9');
 
 INSERT INTO Suivre(idul, sigleCours, sessions, moyenne)
 	VALUE
