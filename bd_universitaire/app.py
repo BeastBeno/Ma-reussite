@@ -24,15 +24,15 @@ if __name__ == "__main__":
     app.run()
 
 '''
-from flask import Flask, render_template
+from flask import Flask , render_template , request
 import pymysql
 import pymysql.cursors
 
 
 conn = pymysql.connect(host='localhost',
                        user='root',
-                       password='Reussite2019',
-                       db='bd_universitaire' )
+                       password='pr@j?vision100%@$!',
+                       db='bd_universitaire')
 
 app = Flask(__name__)
 
