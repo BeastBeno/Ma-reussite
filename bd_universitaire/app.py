@@ -29,17 +29,22 @@ import pymysql
 import pymysql.cursors
 
 
-conn = pymysql.connect(host='localhost',
-                       user='root',
-                       password='pr@j?vision100%@$!',
-                       db='bd_universitaire')
+
 
 app = Flask(__name__)
+ProfileUtilisateur =  {}
+@app.route
+def main():
+    return render_template ('index.html')
 
 @app.route('/', methods=['GET','POST'])
 def login():
-    idul = '"'+request.form.get('idul')+'"'
-    passe = request.form.get('motDePasse')
+    idul = '"'+request.form.get('username')+'"'
+    passe = request.form.get('password')
+    conn = pymysql.connect(host='localhost',
+                           user='root',
+                           password='pr@j?vision100%@$!',
+                           db='bd_universitaire')
     cmd = 'SELECT motDePasse FROM Etudiant WHERE idul='+idul+';'
     cur = conn.cursor()
     cur.execute(cmd)
