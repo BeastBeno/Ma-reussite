@@ -43,7 +43,7 @@ def login():
     passe = request.form.get('password')
     conn = pymysql.connect(host='localhost',
                            user='root',
-                           password='pr@j?vision100%@$!',
+                           password='Reussite2019',
                            db='bd_universitaire')
     cmd = 'SELECT motDePasse FROM Etudiant WHERE idul='+idul+';'
     cur = conn.cursor()
@@ -56,7 +56,7 @@ def login():
         cur.execute(cmd)
         info = cur.fetchone()
 
-        global ProfileUtilisateur
+        global ProfileUtilisateurwq
         ProfileUtilisateur["idul"] = idulProfileUtilisateur
         ProfileUtilisateur["nom"] = info[2]
         ProfileUtilisateur["avatar"] = info[3]
