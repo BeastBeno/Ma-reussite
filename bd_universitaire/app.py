@@ -36,7 +36,7 @@ conn = pymysql.connect(host='localhost',
 
 app = Flask(__name__)
 
-@app.route('/bd_universitaire/', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def login():
     idul = '"'+request.form.get('idul')+'"'
     passe = request.form.get('motDePasse')
@@ -51,8 +51,12 @@ def login():
         cur.execute(cmd)
         info = cur.fetchone()
 
-
-    return render_template("index.html")
+        global ProfileUtilisateur
+        ProfileUtilisateur["idul"] = idulProfileUtilisateur
+        ProfileUtilisateur["nom"] = info[2]
+        ProfileUtilisateur["avatar"] = info[3]
+        return render_template('bienvenu.html', profile=ProfileUtilisateur)
+        return render_template('index.html', message="Informations invalides!")
 
 if __name__ == "__main__":
     app.run()
