@@ -32,9 +32,8 @@ from password import makehash
 
 conn = pymysql.connect(host='localhost',
                            user='root',
-                           password='pr@j?vision100%@$!',
+                           password='theonina',
                            db='bd_universitaire')
-
 
 
 app = Flask(__name__)
@@ -97,6 +96,7 @@ def register():
             cmd='INSERT INTO Etudiant VALUES '+'('+ idul +','+ nom +','+ passe +','+ str(motivation) +',' +str(credit)+ ',' + sigleProgramme+ ')'+ ';'
             cur = conn.cursor()
             cur.execute(cmd)
+            conn.commit()
             print (cmd)
             msg = 'You have successfully registered!'
 
