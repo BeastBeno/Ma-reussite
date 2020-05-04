@@ -156,7 +156,7 @@ for un in lienprog:
                     listeregle.append({nomregle[0:7]: {str(dbnew) + ' crédits': liste}})
                 concentration.append({nomconcentration: {creditconcentration + ' crédits': listeregle}})
             print(concentration)
-
+'''
     fichier = open("listeCours.txt", "r+")
 
     for i in obligatoire:
@@ -184,7 +184,18 @@ for un in lienprog:
                         fichier.write(str(variable) + "\n")
     fichier.close()
 
+'''
+    ('GCI','Génie civil' , 120),
+    ('GEX','Génie des eaux' , 120),
 
+    ('GCH','Génie chimique' , 120),
+    ('GIN','Génie industriel' , 120),
+    ('GEL','Génie électrique' , 120),
+    ('GLO','Génie logiciel' , 120),
+    ('GGL','Génie géologique' , 120),
+
+    ('GIF','Génie informatique' , 120),
+    ('GPH','Génie physique' , 120);
 
 
 
