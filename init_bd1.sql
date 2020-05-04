@@ -89,6 +89,8 @@ CREATE TABLE Appartient(
 	disponibilite varchar(3),
 	regle varchar(1),
 	creditRegle varchar(1),
+	nomConcentration varchar(100),
+	FOREIGN KEY(nom) REFERENCES Concentration(nom) ON DELETE CASCADE,
 	FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE,
 	FOREIGN KEY(sigleCours) REFERENCES Cours(sigleCours) ON DELETE CASCADE
 	);
@@ -748,9 +750,9 @@ INSERT INTO Concentration(id, nom, sigleProgramme)
 (24, 'Signaux et communications', 'GPH');
 
 
-INSERT INTO Appartient(id, sigleProgramme, sigleCours,typeCours,disponibilite, regle, creditRegle)
+INSERT INTO Appartient(id, sigleProgramme, sigleCours,typeCours,disponibilite, regle, creditRegle, nomConcentration)
     Value
-    (123, 'GLO', 'MAT-1910', 'o', 'H', '3', '9');
+    (123, 'GLO', 'MAT-1910', 'o', 'H', '3', '9', 'Études-travail');
 
 INSERT INTO PrealableCours(id, preCours, sigleCours)
     Value

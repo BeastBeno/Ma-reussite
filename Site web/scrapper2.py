@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from scrapper import tablecours
+import ast
 
 
 
@@ -20,11 +21,17 @@ lienprog = ['https://www.ulaval.ca/les-etudes/programmes/repertoire/details/bacc
                 'https://www.ulaval.ca/les-etudes/programmes/repertoire/details/baccalaureat-en-genie-physique-b-ing.html#description-officielle&structure-programme'
                 ]
 gang = []
+gang1 = []
 incre = 0
+incre1 = 0
+nombre = []
 for un in lienprog:
     listeprog = [{'Génie civil' :'GCI'},{'Génie des eaux':'GEX'},{'Génie chimique'  :'GCH'},{'Génie industriel' :'GIN'},
                  {'Génie électrique' :'GEL'},{'Génie logiciel' :'GLO'},{'Génie géologique' :'GGL'},{'Génie informatique' :'GIF'},
                  {'Génie physique' :'GPH'}]
+    for i in range(100):
+        nombre.append(str(i))
+
 
 
 
@@ -88,7 +95,7 @@ for un in lienprog:
                     db = unique['href']
                     if not 'https://www.ulaval.ca' + db in liste:
                         liste.append('https://www.ulaval.ca' + db)
-                option.append({nomregle[0:7]: {str(dbnew) + ' crédits': liste}})
+                option.append({nomregle[6]: {str(dbnew) : liste}})
 
 
 
@@ -115,6 +122,7 @@ for un in lienprog:
                         if azer == nomprogramme:
                             incre += 1
                             gang.append((incre, nomconcentration, untruc.get(azer)))
+
 
 
 
@@ -168,9 +176,93 @@ for un in lienprog:
                             creditobli += 3
                         if not {'obligatoire': {str(creditobli) + ' crédits': comparaison}} in listeregle:
                             listeregle.append({'obligatoire': {str(creditobli) + ' crédits': comparaison}})
-                    listeregle.append({nomregle[0:7]: {str(dbnew) + ' crédits': liste}})
+                    listeregle.append({nomregle[6]: {str(dbnew): liste}})
                 concentration.append({nomconcentration: {creditconcentration + ' crédits': listeregle}})
             print(concentration)
+
+    # ('GEL-3003', 'A')
+    # (123, 'GLO', 'MAT-1910', 'o', 'H', '3', '9', 'Études-travail')
+    # (id, sigleProgramme, sigleCours,typeCours,disponibilite, regle, creditRegle, nomConcentration)
+
+    for i in obligatoire:
+        print(i)
+
+        for untruc in listeprog:
+            for azer in untruc.keys():
+                if azer == nomprogramme:
+                    incre1 += 1
+
+                    variable = tablecours(i)
+                    gang1.append(str((incre1, untruc.get(azer), variable[0], 'o', variable[1], 'null', 'null', 'null')) + ',')
+
+    for i in option:
+        for untruc in listeprog:
+            for azer in untruc.keys():
+                if azer == nomprogramme:
+
+                    for regle in i.items():
+
+
+                        for credit in regle[1].items():
+                            for cours in credit[1]:
+                                incre1 += 1
+
+                                variable = tablecours(cours)
+                                gang1.append(str((incre1, untruc.get(azer), variable[0], 'p', variable[1], regle[0],
+                                                  credit[0], 'null')) + ',')
+                        # ('GEL-3003', 'A')
+                        # (123, 'GLO', 'MAT-1910', 'o', 'H', '3', '9', 'Études-travail')
+                        # (id, sigleProgramme, sigleCours,typeCours,disponibilite, regle, creditRegle, nomConcentration)
+
+
+        
+
+    for i in concentration:
+        for untruc in listeprog:
+            for azer in untruc.keys():
+                if azer == nomprogramme:
+
+                    for concentr in i.items():
+
+                        for credit in concentr[1].items():
+
+
+                            for listregl in credit[1]:
+                                for u in listregl.items():
+                                    for l in u[1].items():
+                                        for newcours in l[1]:
+
+                                            incre1 += 1
+                                            varq = ''
+                                            for num in nombre:
+                                                if u[0] == num:
+                                                    varq = 'p'
+                                                if u[0] == 'obligatoire':
+                                                    varq = 'o'
+
+                                            variable = tablecours(newcours)
+                                            gang1.append(
+                                                str((incre1, untruc.get(azer), variable[0], varq, variable[1], u[0],
+                                                     l[0], concentr[0])) + ',')
+
+fichier = open("listeAppartient.txt", "w")
+for i in gang1:
+    fichier.write(i + "\n")
+fichier.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 '''
     fichier = open("listeCours.txt", "r+")
 
@@ -204,10 +296,14 @@ for un in lienprog:
 
     (122, 'Traitement de donnees massive', 'GLO');
 '''
+
+'''
 fichier = open("listeConcentration.txt", "w")
 for yes in gang:
     fichier.write(str(yes)+ "," + "\n")
 fichier.close()
+
+'''
 
 
 

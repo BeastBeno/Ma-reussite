@@ -14,6 +14,7 @@ lienprog = [
     # 'https://www.fsg.ulaval.ca/etudes/programmes-detudes/baccalaureat-cooperatif-en-genie-des-materiaux-et-de-la-metallurgie/'
 ]
 def tablecours(variable):
+    disponibilite = ''
 
     newurl = variable
     newresponse = requests.get(newurl)
@@ -25,6 +26,21 @@ def tablecours(variable):
 
     credit = a.find('div', {'class': 'bloc renseignements'}).find('div', {'class' : 'droite'}).contents
     vraicredit = credit[0]
+    if a.find('div', {'id': 'horaire_content'}):
+        horaire = a.find('div', {'id': 'horaire_content'}).findAll('h3')
+        for ir in horaire:
+            if ir.text == 'Automne 2020':
+                disponibilite += 'A'
+            if ir.text == 'Été 2020':
+                disponibilite += 'E'
+            if ir.text == 'Hiver 2020':
+                disponibilite += 'H'
+            else:
+                disponibilite = 'null'
+    else:
+        disponibilite = 'null'
+    return sigle, disponibilite
 
-    return sigle, nomcours, int(vraicredit), 8
+
+  #  return sigle, nomcours, int(vraicredit), 8
 
