@@ -6,7 +6,7 @@
 (6, 'Sécurité informatique', 'GLO'),
 (7, 'Approche généraliste', 'GIN'),
 (8, 'Ingénierie de la chaîne logistique et des réseaux de création', 'GIN'),
-(9, "Ingénierie de l'information des systèmes d'entreprise", 'GIN'),
+(9, "Ingénierie de l''information des systèmes d'entreprise", 'GIN'),
 (10, 'Systèmes productiques et distributiques', 'GIN'),
 (11, 'Environnement et ressources hydriques', 'GCI'),
 (12, 'Infrastructures urbaines', 'GCI'),
@@ -21,4 +21,4 @@
 (21, 'Génie médical et biophotonique', 'GPH'),
 (22, 'Photonique', 'GPH'),
 (23, 'Génie des matériaux', 'GPH'),
-(24, 'Signaux et communications', 'GPH'),
+(24, 'Signaux et communications', 'GPH');
