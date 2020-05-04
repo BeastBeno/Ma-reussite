@@ -57,6 +57,12 @@ CREATE TABLE Cours(
 	credit smallint,
     evaluation smallint
 	);
+CREATE TABLE PrealableCours(
+    id smallint PRIMARY KEY,
+	preCours varchar(100),
+	sigleCours varchar(100),
+	FOREIGN KEY(sigleCours) REFERENCES Cours(sigleCours) ON DELETE CASCADE
+	);
 
 CREATE TABLE Suivre(
 	idul varchar(100),
@@ -330,6 +336,10 @@ INSERT INTO Concentration(id, nom, sigleProgramme)
 INSERT INTO Appartient(id, sigleProgramme, sigleCours,typeCours,disponibilite, regle, creditRegle)
     Value
     (123, 'GLO', 'MAT-1910', 'o', 'H', '3', '9');
+
+INSERT INTO PrealableCours(id, preCours, sigleCours)
+    Value
+    (133, 'MAT-0260', 'MAT-1910');
 
 INSERT INTO Suivre(idul, sigleCours, sessions, moyenne)
 	VALUE
