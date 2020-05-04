@@ -27,6 +27,7 @@ if __name__ == "__main__":
 from flask import Flask , render_template , request
 import pymysql
 import pymysql.cursors
+from password import makehash
 
 
 
@@ -39,29 +40,33 @@ def main():
 
 @app.route('/', methods=['GET','POST'])
 def login():
-    idul = '"'+request.form.get('username')+'"'
-    passe = request.form.get('password')
     conn = pymysql.connect(host='localhost',
                            user='root',
-                           password='Reussite2019',
+                           password='pr@j?vision100%@$!',
                            db='bd_universitaire')
-    cmd = 'SELECT motDePasse FROM Etudiant WHERE idul='+idul+';'
-    cur = conn.cursor()
-    cur.execute(cmd)
-    passeVrai = cur.fetchone()
+    if request.method == 'GET':
+        pass
+    if request.method == 'POST':
 
-    if (passeVrai != None) and (passe == passeVrai[0]):
-        cmd = 'SELECT * FROM Etudiant WHERE idul=' + idul + ';'
+        idul = request.form.get('username')
+        passe = makehash(request.form.get('password'))
+        cmd = 'SELECT motDePasse FROM Etudiant WHERE idul=''idul'';'
         cur = conn.cursor()
         cur.execute(cmd)
-        info = cur.fetchone()
+        passeVrai = cur.fetchone()
 
-        global ProfileUtilisateurwq
+        if (passeVrai != None) and (passe == passeVrai[0]):
+            cmd = 'SELECT * FROM Etudiant WHERE idul='+idul+';'
+            cur = conn.cursor()
+            cur.execute(cmd)
+            info = cur.fetchone()
+
+        '''global ProfileUtilisateurwq
         ProfileUtilisateur["idul"] = idulProfileUtilisateur
         ProfileUtilisateur["nom"] = info[2]
         ProfileUtilisateur["avatar"] = info[3]
-        return render_template('bienvenu.html', profile=ProfileUtilisateur)
-        return render_template('index.html', message="Informations invalides!")
+        return render_template('bienvenu.html', profile=ProfileUtilisateur)'''
+        return render_template('Sanstitre-2.html', message="Informations invalides!")
 
 if __name__ == "__main__":
     app.run()
