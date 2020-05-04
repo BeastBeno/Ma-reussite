@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import scrapper
+from scrapper import tablecours
 
 
 
@@ -157,7 +157,32 @@ for un in lienprog:
                 concentration.append({nomconcentration: {creditconcentration + ' crédits': listeregle}})
             print(concentration)
 
+    fichier = open("listeCours.txt", "r+")
 
+    for i in obligatoire:
+        listefich = []
+        variable = tablecours(i)
+        for az in fichier:
+            listefich.append(az)
+
+
+        if not variable in listefich:
+
+
+
+            fichier.write(str(variable) + "\n")
+
+    for i in option:
+        for a in i.values():
+            for z in a.values():
+                for e in z:
+                    variable = tablecours(e)
+                    listefich = []
+                    for az in fichier:
+                        listefich.append(az)
+                    if not variable in listefich:
+                        fichier.write(str(variable) + "\n")
+    fichier.close()
 
 
 

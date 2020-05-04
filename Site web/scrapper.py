@@ -26,6 +26,5 @@ def tablecours(variable):
     credit = a.find('div', {'class': 'bloc renseignements'}).find('div', {'class' : 'droite'}).contents
     vraicredit = credit[0]
 
-    return sigle, nomcours, int(vraicredit), random.randrange(0, 10)
+    return sigle, nomcours, int(vraicredit), 8
 
-print(tablecours('https://www.ulaval.ca/les-etudes/cours/repertoire/detailsCours/gel-3003-signaux-et-systemes-discrets.html#renseignements'))
