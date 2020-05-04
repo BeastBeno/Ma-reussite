@@ -19,7 +19,15 @@ lienprog = ['https://www.ulaval.ca/les-etudes/programmes/repertoire/details/bacc
                 'https://www.ulaval.ca/les-etudes/programmes/repertoire/details/baccalaureat-en-genie-informatique-b-ing.html#description-officielle&structure-programme',
                 'https://www.ulaval.ca/les-etudes/programmes/repertoire/details/baccalaureat-en-genie-physique-b-ing.html#description-officielle&structure-programme'
                 ]
+gang = []
+incre = 0
 for un in lienprog:
+    listeprog = [{'Génie civil' :'GCI'},{'Génie des eaux':'GEX'},{'Génie chimique'  :'GCH'},{'Génie industriel' :'GIN'},
+                 {'Génie électrique' :'GEL'},{'Génie logiciel' :'GLO'},{'Génie géologique' :'GGL'},{'Génie informatique' :'GIF'},
+                 {'Génie physique' :'GPH'}]
+
+
+
     obligatoire, option, concentration = [], [], []
     newurl = un
     newresponse = requests.get(newurl)
@@ -102,6 +110,13 @@ for un in lienprog:
 
                     if not 'https://www.ulaval.ca' + db in comparaison:
                         comparaison.append('https://www.ulaval.ca' + db)
+                for untruc in listeprog:
+                    for azer in untruc.keys():
+                        if azer == nomprogramme:
+                            incre += 1
+                            gang.append((incre, nomconcentration, untruc.get(azer)))
+
+
 
 
                 regle = vari.findAll('div', {'class' : 'regle'})
@@ -185,18 +200,14 @@ for un in lienprog:
     fichier.close()
 
 '''
-    ('GCI','Génie civil' , 120),
-    ('GEX','Génie des eaux' , 120),
+'''
 
-    ('GCH','Génie chimique' , 120),
-    ('GIN','Génie industriel' , 120),
-    ('GEL','Génie électrique' , 120),
-    ('GLO','Génie logiciel' , 120),
-    ('GGL','Génie géologique' , 120),
-
-    ('GIF','Génie informatique' , 120),
-    ('GPH','Génie physique' , 120);
-
+    (122, 'Traitement de donnees massive', 'GLO');
+'''
+fichier = open("listeConcentration.txt", "w")
+for yes in gang:
+    fichier.write(str(yes)+ "," + "\n")
+fichier.close()
 
 
 

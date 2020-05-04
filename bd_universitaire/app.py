@@ -1,18 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for, session
-from flask_mysqldb import MySQL
-import MySQLdb.cursors
-import re
+
+from flask import Markup
+from flask import Flask
+from flask import render_template
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Reussite2019'
-app.config['MYSQL_DB'] = 'bd_universitaire'
+@app.route("/")
+def chart():
+    return render_template('../Site web/Connexion - Université Laval.html')
 
-mysql = MySQL(app)
-@app.route('/bd_universitaire/', methods=['GET', 'POST'])
-def login():
-    return render_template('index.html', msg='')
+if __name__ == "_main_":
+    app.run(host='0.0.0.0', port=5001)
 
 
 
