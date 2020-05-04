@@ -25,11 +25,34 @@ if __name__ == "__main__":
 
 '''
 from flask import Flask, render_template
+import pymysql
+import pymysql.cursors
+
+
+conn = pymysql.connect(host='localhost',
+                       user='root',
+                       password='Reussite2019',
+                       db='bd_universitaire' )
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
+@app.route('/bd_universitaire/', methods=['GET','POST'])
+def login():
+    idul = '"'+request.form.get('idul')+'"'
+    passe = request.form.get('motDePasse')
+    cmd = 'SELECT motDePasse FROM Etudiant WHERE idul='+idul+';'
+    cur = conn.cursor()
+    cur.execute(cmd)
+    passeVrai = cur.fetchone()
+
+    if (passeVrai != None) and (passe == passeVrai[0]):
+        cmd = 'SELECT * FROM Etudiant WHERE idul=' + idul + ';'
+        cur = conn.cursor()
+        cur.execute(cmd)
+        info = cur.fetchone()
+
+
     return render_template("index.html")
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run()
