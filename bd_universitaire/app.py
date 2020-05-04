@@ -27,8 +27,13 @@ if __name__ == "__main__":
 from flask import Flask , render_template , request
 import pymysql
 import pymysql.cursors
+import re
 from password import makehash
 
+conn = pymysql.connect(host='localhost',
+                           user='root',
+                           password='Reussite2019',
+                           db='bd_universitaire')
 
 
 
@@ -59,8 +64,47 @@ def login():
             cur = conn.cursor()
             cur.execute(cmd)
             info = cur.fetchone()
+
+
             return render_template('Sanstitre-2.html')
         return render_template('index.html', msg="Informations invalides!")
+
+@app.route('//register', methods=['GET', 'POST'])
+def register():
+
+    msg = ''
+    # Check if "username", "password" and "email" POST requests exist (user submitted form)
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form :
+        # Create variables for easy access
+        idul = "'" + request.form.get('username') + "'"
+        passe = "'" + makehash(request.form.get('password')) + "'"
+        password = request.form.get('password')
+        credit = request.form.get('credit')
+        nom = "'" + request.form.get('nom') + "'"
+        sigleProgramme = "'" + request.form.get('sigleProgramme') + "'"
+        motivation = 5
+
+        cmd = 'SELECT * FROM Etudiant WHERE idul='+ idul +';'
+        cur = conn.cursor()
+        cur.execute(cmd)
+        etudiant = cur.fetchone()
+        # If account exists show error and validation checks
+        if etudiant:
+            msg = 'Account already exists!'
+
+        else:
+            # Account doesnt exists and the form data is valid, now insert new account into accounts table
+            cmd='INSERT INTO Etudiant VALUES '+'('+ idul +','+ nom +','+ passe +','+ str(motivation) +',' +str(credit)+ ',' + sigleProgramme+ ')'+ ';'
+            cur = conn.cursor()
+            cur.execute(cmd)
+            print (cmd)
+            msg = 'You have successfully registered!'
+
+    elif request.method == 'POST':
+        # Form is empty... (no POST data)
+        msg = 'Please fill out the form!'
+    # Show registration form with message (if any)
+    return render_template('register.html', msg=msg)
 
 
 if __name__ == "__main__":
