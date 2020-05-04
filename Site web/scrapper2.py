@@ -179,11 +179,37 @@ for un in lienprog:
                     listeregle.append({nomregle[6]: {str(dbnew): liste}})
                 concentration.append({nomconcentration: {creditconcentration + ' crédits': listeregle}})
             print(concentration)
+    fichier = open("listePrealable.txt", "a+")
 
+    for i in obligatoire:
+
+        variable = tablecours(i)
+        for azert in variable[1]:
+
+            incre1 += 1
+
+            if azert == []:
+                fichier.write(str((incre1, 'null', variable[0])) + ',' + "\n")
+            else:
+                fichier.write(str((incre1, azert[0], variable[0])) + ',' + "\n")
+
+    for i in option:
+        for a in i.values():
+            for z in a.values():
+                for e in z:
+                    variable = tablecours(e)
+                    for azert in variable[1]:
+                        incre1 += 1
+
+                        if azert == []:
+                            fichier.write(str((incre1, 'null', variable[0])) + ',' + "\n")
+                        else:
+                            fichier.write(str((incre1, azert[0], variable[0])) + ',' + "\n")
+    fichier.close()
     # ('GEL-3003', 'A')
     # (123, 'GLO', 'MAT-1910', 'o', 'H', '3', '9', 'Études-travail')
     # (id, sigleProgramme, sigleCours,typeCours,disponibilite, regle, creditRegle, nomConcentration)
-
+'''
     for i in obligatoire:
         print(i)
 
@@ -215,8 +241,8 @@ for un in lienprog:
                         # (id, sigleProgramme, sigleCours,typeCours,disponibilite, regle, creditRegle, nomConcentration)
 
 
-        
-
+'''
+'''
     for i in concentration:
         for untruc in listeprog:
             for azer in untruc.keys():
@@ -251,47 +277,22 @@ for i in gang1:
 fichier.close()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 '''
-    fichier = open("listeCours.txt", "r+")
-
-    for i in obligatoire:
-        listefich = []
-        variable = tablecours(i)
-        for az in fichier:
-            listefich.append(az)
-
-
-        if not variable in listefich:
 
 
 
-            fichier.write(str(variable) + "\n")
 
-    for i in option:
-        for a in i.values():
-            for z in a.values():
-                for e in z:
-                    variable = tablecours(e)
-                    listefich = []
-                    for az in fichier:
-                        listefich.append(az)
-                    if not variable in listefich:
-                        fichier.write(str(variable) + "\n")
-    fichier.close()
 
-'''
+
+
+
+
+
+
+
+
+
+
 '''
 
     (122, 'Traitement de donnees massive', 'GLO');
