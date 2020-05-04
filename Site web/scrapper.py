@@ -15,7 +15,7 @@ lienprog = [
 ]
 def tablecours(variable):
     disponibilite = ''
-
+    gros = []
     newurl = variable
     newresponse = requests.get(newurl)
     soups = BeautifulSoup(newresponse.text, 'html5lib')
@@ -26,6 +26,14 @@ def tablecours(variable):
 
     credit = a.find('div', {'class': 'bloc renseignements'}).find('div', {'class' : 'droite'}).contents
     vraicredit = credit[0]
+    if soups.find('div', {'class': 'bloc prealables'}):
+        if soups.find('div', {'class': 'bloc prealables'}).find('div', {'class': 'contenubloc'}):
+            if soups.find('div', {'class': 'bloc prealables'}).find('div', {'class': 'contenubloc'}).find('div', {'class': 'txt'}):
+                prealable = soups.find('div', {'class': 'bloc prealables'}).find('div', {'class': 'contenubloc'}).find('div', {'class': 'txt'}).findAll('a')
+
+        for ir in prealable:
+
+            gros.append(ir.contents)
     if a.find('div', {'id': 'horaire_content'}):
         horaire = a.find('div', {'id': 'horaire_content'}).findAll('h3')
         for ir in horaire:
@@ -39,7 +47,10 @@ def tablecours(variable):
                 disponibilite = 'null'
     else:
         disponibilite = 'null'
-    return sigle, disponibilite
+
+
+    #return sigle, disponibilite
+    return sigle, gros
 
 
   #  return sigle, nomcours, int(vraicredit), 8
