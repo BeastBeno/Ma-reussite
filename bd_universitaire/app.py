@@ -32,7 +32,7 @@ from password import makehash
 
 conn = pymysql.connect(host='localhost',
                            user='root',
-                           password='Reussite2019',
+                           password='pr@j?vision100%@$!',
                            db='bd_universitaire')
 
 
