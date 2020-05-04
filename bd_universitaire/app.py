@@ -42,31 +42,26 @@ def main():
 def login():
     conn = pymysql.connect(host='localhost',
                            user='root',
-                           password='pr@j?vision100%@$!',
+                           password='Reussite2019',
                            db='bd_universitaire')
     if request.method == 'GET':
         pass
     if request.method == 'POST':
 
-        idul = request.form.get('username')
+        idul = '"'+request.form.get('username')+'"'
         passe = makehash(request.form.get('password'))
-        cmd = 'SELECT motDePasse FROM Etudiant WHERE idul=''idul'';'
+        cmd = 'SELECT motDePasse FROM Etudiant WHERE idul='+idul+';'
         cur = conn.cursor()
         cur.execute(cmd)
         passeVrai = cur.fetchone()
-
         if (passeVrai != None) and (passe == passeVrai[0]):
             cmd = 'SELECT * FROM Etudiant WHERE idul='+idul+';'
             cur = conn.cursor()
             cur.execute(cmd)
             info = cur.fetchone()
+            return render_template('Sanstitre-2.html')
+        return render_template('index.html', msg="Informations invalides!")
 
-        '''global ProfileUtilisateurwq
-        ProfileUtilisateur["idul"] = idulProfileUtilisateur
-        ProfileUtilisateur["nom"] = info[2]
-        ProfileUtilisateur["avatar"] = info[3]
-        return render_template('bienvenu.html', profile=ProfileUtilisateur)'''
-        return render_template('Sanstitre-2.html', message="Informations invalides!")
 
 if __name__ == "__main__":
     app.run()
