@@ -33,9 +33,9 @@ import pymysql.cursors
 
 app = Flask(__name__)
 ProfileUtilisateur =  {}
-@app.route
+@app.route("/")
 def main():
-    return render_template ('index.html')
+    return render_template('index.html')
 
 @app.route('/', methods=['GET','POST'])
 def login():
