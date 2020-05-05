@@ -29,6 +29,8 @@ import pymysql
 import pymysql.cursors
 import re
 from password import makehash
+from moyenne import moyenne_ponderee
+from moyenne import atteindre
 
 labels = [
     'JAN', 'FEB', 'MAR', 'APR',
@@ -121,6 +123,10 @@ def register():
 
 @app.route("//Cours/Acceuil")
 def Acceuil():
+    return render_template('Sanstitre-2.html')
+
+@app.route("//Profile/Acceuil")
+def Acceuil1():
     return render_template('Sanstitre-2.html')
 
 @app.route("//Cours")
@@ -371,12 +377,23 @@ def Calcul1():
     cur.execute(cmd)
     note = cur.fetchall()
     note1 = []
-    nbr_exam =[]
+    totaux = []
+    nbr_exam = []
     for i in range((len(note))):
+        totaux.append(str(100))
         note1.append(str(note[i])[1:-2])
     print(note)
-
-    for i in range((len(note))):
+    cmd = 'SELECT n.ponderation FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    ponderation = cur.fetchall()
+    ponderation1 = []
+    nbr_exam = []
+    for i in range((len(ponderation))):
+        ponderation1.append(str(ponderation[i])[1:-2])
+    print(ponderation1)
+    for i in range((len(ponderation))):
         nbr_exam.append("NOTE"+str(i+1))
 
 
@@ -390,156 +407,181 @@ def Calcul1():
     return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
 @app.route("//Prevision/Calcul2")
 def Calcul2():
-    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info1 +"'"+ ';'
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" + info2 + "'" + ';'
     cur = conn.cursor()
     cur.execute(cmd)
     sigleCours = str(cur.fetchone())[2:-3]
 
-    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
     print(cmd)
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
     note1 = []
-    nbr_exam =[]
+    totaux = []
+    nbr_exam = []
     for i in range((len(note))):
+        totaux.append(str(100))
         note1.append(str(note[i])[1:-2])
     print(note)
+    cmd = 'SELECT n.ponderation FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    ponderation = cur.fetchall()
+    ponderation1 = []
+    nbr_exam = []
+    for i in range((len(ponderation))):
+        ponderation1.append(str(ponderation[i])[1:-2])
+    print(ponderation1)
+    for i in range((len(ponderation))):
+        nbr_exam.append("NOTE" + str(i + 1))
 
-    for i in range((len(note))):
-        nbr_exam.append("NOTE"+str(i+1))
-
-
-
-
-
-
-
-    bar_labels=labels
-    bar_values=values
+    bar_labels = labels
+    bar_values = values
     return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
 
 @app.route("//Prevision/Calcul3")
 def Calcul3():
-    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info1 +"'"+ ';'
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" + info3 + "'" + ';'
     cur = conn.cursor()
     cur.execute(cmd)
     sigleCours = str(cur.fetchone())[2:-3]
 
-    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
     print(cmd)
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
     note1 = []
-    nbr_exam =[]
+    totaux = []
+    nbr_exam = []
     for i in range((len(note))):
+        totaux.append(str(100))
         note1.append(str(note[i])[1:-2])
     print(note)
+    cmd = 'SELECT n.ponderation FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    ponderation = cur.fetchall()
+    ponderation1 = []
+    nbr_exam = []
+    for i in range((len(ponderation))):
+        ponderation1.append(str(ponderation[i])[1:-2])
+    print(ponderation1)
+    for i in range((len(ponderation))):
+        nbr_exam.append("NOTE" + str(i + 1))
 
-    for i in range((len(note))):
-        nbr_exam.append("NOTE"+str(i+1))
-
-
-
-
-
-
-
-    bar_labels=labels
-    bar_values=values
+    bar_labels = labels
+    bar_values = values
     return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
 
 @app.route("//Prevision/Calcul4")
 def Calcul4():
-    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info1 +"'"+ ';'
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" + info4 + "'" + ';'
     cur = conn.cursor()
     cur.execute(cmd)
     sigleCours = str(cur.fetchone())[2:-3]
 
-    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
     print(cmd)
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
     note1 = []
-    nbr_exam =[]
+    totaux = []
+    nbr_exam = []
     for i in range((len(note))):
+        totaux.append(str(100))
         note1.append(str(note[i])[1:-2])
     print(note)
+    cmd = 'SELECT n.ponderation FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    ponderation = cur.fetchall()
+    ponderation1 = []
+    nbr_exam = []
+    for i in range((len(ponderation))):
+        ponderation1.append(str(ponderation[i])[1:-2])
+    print(ponderation1)
+    for i in range((len(ponderation))):
+        nbr_exam.append("NOTE" + str(i + 1))
 
-    for i in range((len(note))):
-        nbr_exam.append("NOTE"+str(i+1))
-
-
-
-
-
-
-
-    bar_labels=labels
-    bar_values=values
+    bar_labels = labels
+    bar_values = values
     return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
 
 @app.route("//Prevision/Calcul5")
 def Calcul5():
-    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info1 +"'"+ ';'
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" + info5 + "'" + ';'
     cur = conn.cursor()
     cur.execute(cmd)
     sigleCours = str(cur.fetchone())[2:-3]
 
-    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
     print(cmd)
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
     note1 = []
-    nbr_exam =[]
+    totaux = []
+    nbr_exam = []
     for i in range((len(note))):
+        totaux.append(str(100))
         note1.append(str(note[i])[1:-2])
     print(note)
+    cmd = 'SELECT n.ponderation FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    ponderation = cur.fetchall()
+    ponderation1 = []
+    nbr_exam = []
+    for i in range((len(ponderation))):
+        ponderation1.append(str(ponderation[i])[1:-2])
+    print(ponderation1)
+    for i in range((len(ponderation))):
+        nbr_exam.append("NOTE" + str(i + 1))
 
-    for i in range((len(note))):
-        nbr_exam.append("NOTE"+str(i+1))
-
-
-
-
-
-
-
-    bar_labels=labels
-    bar_values=values
+    bar_labels = labels
+    bar_values = values
     return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
 @app.route("//Prevision/Calcul6")
 def Calcul6():
-    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info1 +"'"+ ';'
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" + info6 + "'" + ';'
     cur = conn.cursor()
     cur.execute(cmd)
     sigleCours = str(cur.fetchone())[2:-3]
 
-    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
     print(cmd)
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
     note1 = []
-    nbr_exam =[]
+    totaux = []
+    nbr_exam = []
     for i in range((len(note))):
+        totaux.append(str(100))
         note1.append(str(note[i])[1:-2])
     print(note)
+    cmd = 'SELECT n.ponderation FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    ponderation = cur.fetchall()
+    ponderation1 = []
+    nbr_exam = []
+    for i in range((len(ponderation))):
+        ponderation1.append(str(ponderation[i])[1:-2])
+    print(ponderation1)
+    for i in range((len(ponderation))):
+        nbr_exam.append("NOTE" + str(i + 1))
 
-    for i in range((len(note))):
-        nbr_exam.append("NOTE"+str(i+1))
-
-
-
-
-
-
-
-    bar_labels=labels
-    bar_values=values
+    bar_labels = labels
+    bar_values = values
     return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
 if __name__ == "__main__":
     app.run()
