@@ -403,7 +403,7 @@ def Calcul1():
 
         if not request.form.get('textone').isalpha() and not request.form.get('textTWO').isalpha():
 
-            if not float(request.form.get('textone')) < 0 and not float(request.form.get('textone')) > 100 and not float(request.form.get('textTWO')) < 0 and not float(request.form.get('textTWO')) > 100:
+            if not float(request.form.get('textone')) < 0 and not float(request.form.get('textone')) > 100 and not float(request.form.get('textTWO')) < 0 and not float(request.form.get('textTWO')) > 1:
                 moyenneaatteindre = float(request.form.get('textone'))
                 coeffdufinal = float(request.form.get('textTWO'))
                 totaldufinal = 100
@@ -413,7 +413,7 @@ def Calcul1():
                 return render_template('prevision.html', msg=msg,  moyfina=moyenneaatteindre, final=final, moyenne=moyenne, labels=nbr_exam,
                                        values=note1, title=info1)
             else:
-                msg = 'La saisie doit être comprise entre 0 et 100 !'
+                msg = 'La saisie doit être comprise entre 0 et 100 pour la moyenne et entre 0 et 1 pour la pondération(%) !'
         elif request.form.get('textone').isalpha() or request.form.get('textTWO').isalpha():
             msg = 'La saisie ne doit pas contenir de texte !'
     elif request.method == 'POST':
@@ -468,7 +468,7 @@ def Calcul2():
 
             if not float(request.form.get('textone')) < 0 and not float(
                     request.form.get('textone')) > 100 and not float(request.form.get('textTWO')) < 0 and not float(
-                    request.form.get('textTWO')) > 100:
+                    request.form.get('textTWO')) > 1:
                 moyenneaatteindre = float(request.form.get('textone'))
                 coeffdufinal = float(request.form.get('textTWO'))
                 totaldufinal = 100
@@ -479,7 +479,7 @@ def Calcul2():
                                        moyenne=moyenne, labels=nbr_exam,
                                        values=note1, title=info2)
             else:
-                msg = 'La saisie doit être comprise entre 0 et 100 !'
+                msg = 'La saisie doit être comprise entre 0 et 100 pour la moyenne et entre 0 et 1 pour la pondération(%) !'
         elif request.form.get('textone').isalpha() or request.form.get('textTWO').isalpha():
             msg = 'La saisie ne doit pas contenir de texte !'
     elif request.method == 'POST':
@@ -533,7 +533,7 @@ def Calcul3():
 
             if not float(request.form.get('textone')) < 0 and not float(
                     request.form.get('textone')) > 100 and not float(request.form.get('textTWO')) < 0 and not float(
-                    request.form.get('textTWO')) > 100:
+                    request.form.get('textTWO')) > 1:
                 moyenneaatteindre = float(request.form.get('textone'))
                 coeffdufinal = float(request.form.get('textTWO'))
                 totaldufinal = 100
@@ -544,7 +544,7 @@ def Calcul3():
                                        moyenne=moyenne, labels=nbr_exam,
                                        values=note1, title=info3)
             else:
-                msg = 'La saisie doit être comprise entre 0 et 100 !'
+                msg = 'La saisie doit être comprise entre 0 et 100 pour la moyenne et entre 0 et 1 pour la pondération(%) !'
         elif request.form.get('textone').isalpha() or request.form.get('textTWO').isalpha():
             msg = 'La saisie ne doit pas contenir de texte !'
     elif request.method == 'POST':
@@ -598,7 +598,7 @@ def Calcul4():
 
             if not float(request.form.get('textone')) < 0 and not float(
                     request.form.get('textone')) > 100 and not float(request.form.get('textTWO')) < 0 and not float(
-                    request.form.get('textTWO')) > 100:
+                    request.form.get('textTWO')) > 1:
                 moyenneaatteindre = float(request.form.get('textone'))
                 coeffdufinal = float(request.form.get('textTWO'))
                 totaldufinal = 100
@@ -609,7 +609,7 @@ def Calcul4():
                                        moyenne=moyenne, labels=nbr_exam,
                                        values=note1, title=info4)
             else:
-                msg = 'La saisie doit être comprise entre 0 et 100 !'
+                msg = 'La saisie doit être comprise entre 0 et 100 pour la moyenne et entre 0 et 1 pour la pondération(%) !'
         elif request.form.get('textone').isalpha() or request.form.get('textTWO').isalpha():
             msg = 'La saisie ne doit pas contenir de texte !'
     elif request.method == 'POST':
@@ -663,7 +663,7 @@ def Calcul5():
 
             if not float(request.form.get('textone')) < 0 and not float(
                     request.form.get('textone')) > 100 and not float(request.form.get('textTWO')) < 0 and not float(
-                    request.form.get('textTWO')) > 100:
+                    request.form.get('textTWO')) > 1:
                 moyenneaatteindre = float(request.form.get('textone'))
                 coeffdufinal = float(request.form.get('textTWO'))
                 totaldufinal = 100
@@ -674,7 +674,7 @@ def Calcul5():
                                        moyenne=moyenne, labels=nbr_exam,
                                        values=note1, title=info5)
             else:
-                msg = 'La saisie doit être comprise entre 0 et 100 !'
+                msg = 'La saisie doit être comprise entre 0 et 100 pour la moyenne et entre 0 et 1 pour la pondération(%) !'
         elif request.form.get('textone').isalpha() or request.form.get('textTWO').isalpha():
             msg = 'La saisie ne doit pas contenir de texte !'
     elif request.method == 'POST':
@@ -727,7 +727,7 @@ def Calcul6():
 
             if not float(request.form.get('textone')) < 0 and not float(
                     request.form.get('textone')) > 100 and not float(request.form.get('textTWO')) < 0 and not float(
-                    request.form.get('textTWO')) > 100:
+                    request.form.get('textTWO')) > 1:
                 moyenneaatteindre = float(request.form.get('textone'))
                 coeffdufinal = float(request.form.get('textTWO'))
                 totaldufinal = 100
@@ -738,7 +738,7 @@ def Calcul6():
                                        moyenne=moyenne, labels=nbr_exam,
                                        values=note, title=info6)
             else:
-                msg = 'La saisie doit être comprise entre 0 et 100 !'
+                msg = 'La saisie doit être comprise entre 0 et 100 pour la moyenne et entre 0 et 1 pour la pondération(%) !'
         elif request.form.get('textone').isalpha() or request.form.get('textTWO').isalpha():
             msg = 'La saisie ne doit pas contenir de texte !'
     elif request.method == 'POST':
@@ -752,3 +752,4 @@ def Calcul6():
                            title=info6)
 if __name__ == "__main__":
     app.run()
+
