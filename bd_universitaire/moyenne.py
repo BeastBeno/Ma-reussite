@@ -1,11 +1,11 @@
 
 
-a = [50, 80]
-b = [0.25, 0.25]
+a = [65, 81.25]
+b = [0.3, 0.35]
 c = [100, 100]
 
-moyenneaatteindre = 99
-coeffdufinal = 0.5
+moyenneaatteindre = 81.19
+coeffdufinal = 0.35
 totaldufinal = 100
 
 def atteindre(notes, coefficients, totaux, moyenneaatteindre, coeffdufinal, totaldufinal):
@@ -18,21 +18,21 @@ def atteindre(notes, coefficients, totaux, moyenneaatteindre, coeffdufinal, tota
     a = len(notes)
 
     while moyenne != moyenneaatteindre:
-        x += 1
+        x += 0.01
         notes[a-1] = x
 
         somme = 0
         maximum = 0
-        print(notes)
+
         for i in range (len(notes)):
 
 
             somme+=float(notes[i])*float(coefficients[i])
             maximum+=float(totaux[i])*float(coefficients[i])
-            moyenne=somme*100/maximum
-        print(moyenne)
+            moyenne=round(somme*100/maximum,2)
 
-    return x
+
+    return round(x, 2)
 
 def moyenne_ponderee(notes,coefficients,totaux):
     """ Cacul d'une moyenne pondérée à partir d'une liste de notes et d'une liste de coefficients"""
@@ -42,7 +42,7 @@ def moyenne_ponderee(notes,coefficients,totaux):
     for i in range (len(notes)):
         somme+=float(notes[i])*float(coefficients[i])
         maximum+=float(totaux[i])*float(coefficients[i])
-        moyenne=somme*100/maximum
+        moyenne= round(somme*100/maximum,2)
     return moyenne
 
 print(moyenne_ponderee(a, b, c))
