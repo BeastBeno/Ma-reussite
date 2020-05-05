@@ -5,7 +5,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 :root {
-	
+
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -376,7 +376,7 @@ h1, .h1 {
 
 h2, .h2 {
   font-size: 2.2rem;
-  
+
 }
 
 h3, .h3 {
@@ -9762,7 +9762,7 @@ button.bg-dark:focus {
 }
 
 .text-center {
-  text-align: center !important;z
+  text-align: center !important;
 }
 .zeubi{
 	text-align: justify

@@ -32,7 +32,7 @@ from password import makehash
 
 conn = pymysql.connect(host='localhost',
                            user='root',
-                           password='theonina',
+                           password='Reussite2019',
                            db='bd_universitaire')
 
 
@@ -44,10 +44,7 @@ def main():
 
 @app.route('/', methods=['GET','POST'])
 def login():
-    conn = pymysql.connect(host='localhost',
-                           user='root',
-                           password='pr@j?vision100%@$!',
-                           db='bd_universitaire')
+
     if request.method == 'GET':
         pass
     if request.method == 'POST':
@@ -105,6 +102,13 @@ def register():
         msg = 'Please fill out the form!'
     # Show registration form with message (if any)
     return render_template('register.html', msg=msg)
+@app.route("//Cours")
+def Cours():
+    return render_template('Sanstitre-3.html')
+@app.route("//Cours/Calul")
+def Cours1():
+    return render_template('Sanstitre-6.html')
+
 
 
 if __name__ == "__main__":
