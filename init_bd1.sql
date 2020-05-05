@@ -2729,7 +2729,7 @@ INSERT INTO Note(id, idul,sigleCours, NumeroEvaluation, ponderation, note)
 
 DELIMITER |
 Create Trigger AssignDefaultClasses_trigger
-Before INSERT On Etudiant
+AFTER INSERT On Etudiant
 FOR EACH ROW
 BEGIN
     Insert into Suivre(idul, sigleCours, sessions, moyenne) value
@@ -2742,7 +2742,7 @@ BEGIN
     INSERT INTO Note(id, idul,sigleCours, NumeroEvaluation, ponderation, note)
 	VALUE
 	(31, New.idul,  'ECN-2901',1,0.25, 70),
-	(23, New.idul,  'ECN-2901',2,0.25, 95),
+	(243, New.idul,  'ECN-2901',2,0.25, 95),
 	(33, New.idul,  'ECN-2901',3,0.25, 50),
 	(266,New.idul,'GLO-1111',1,0.25, 70),
 	(274,New.idul,'GLO-1111',1,0.25, 70),
