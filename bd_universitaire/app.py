@@ -396,7 +396,7 @@ def Calcul1():
     for i in range((len(ponderation))):
         nbr_exam.append("NOTE"+str(i+1))
 
-
+    moyenne = moyenne_ponderee(note1, ponderation1, totaux)
 
 
 
