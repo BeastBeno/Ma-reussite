@@ -47,7 +47,7 @@ colors = [
 
 conn = pymysql.connect(host='localhost',
                            user='root',
-                           password='Reussite2019',
+                           password='theonina',
                            db='bd_universitaire')
 
 
@@ -130,7 +130,7 @@ def Cours():
     cur.execute(cmd)
 
     info = cur.fetchall()
-    global info1,info2,info3,info3,info4,info5,info5
+    global info1,info2,info3,info3,info4,info5,info5, info6
     info1 = str(info[0])[2:-3]
     info2 = str(info[1])[2:-3]
     info3 = str(info[2])[2:-3]
@@ -295,6 +295,36 @@ def Cours5():
     bar_labels=labels
     bar_values=values
     return render_template('graphique.html', max=100, labels=nbr_exam, values=note1, title=info5)
+@app.route("//Cours/Calul6")
+def Cours6():
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info5+"'"+ ';'
+    cur = conn.cursor()
+    cur.execute(cmd)
+    sigleCours = str(cur.fetchone())[2:-3]
+
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    note = cur.fetchall()
+    note1 = []
+    nbr_exam =[]
+    for i in range((len(note))):
+        note1.append(str(note[i])[1:-2])
+    print(note)
+
+    for i in range((len(note))):
+        nbr_exam.append("NOTE"+str(i+1))
+
+
+
+
+
+
+
+    bar_labels=labels
+    bar_values=values
+    return render_template('graphique.html', max=100, labels=nbr_exam, values=note1, title=info6)
 
 @app.route("//Cours/Profile")
 def Profile():
@@ -307,9 +337,209 @@ def Profile():
 
     return render_template('profile.html', prog=nomProg, motiv=motivation)
 
+@app.route("//Prevision")
+def Prevision():
+    cmd = 'SELECT c.nom FROM Cours c, Suivre s WHERE s.idul=' + idul + 'and c.sigleCours= s.sigleCours ;'
+    cur = conn.cursor()
+    cur.execute(cmd)
+
+    info = cur.fetchall()
+    global info1,info2,info3,info3,info4,info5,info5
+    info1 = str(info[0])[2:-3]
+    info2 = str(info[1])[2:-3]
+    info3 = str(info[2])[2:-3]
+    info4 = str(info[3])[2:-3]
+    info5 = str(info[4])[2:-3]
+    info6 = str(info[5])[2:-3]
 
 
 
 
+    print(info)
+    return render_template('listeCours.html', cours01=info1,cours02=info2,cours03=info3,cours04=info4,cours05=info5,cours06=info6)
+
+@app.route("//Prevision/Calcul1")
+def Calcul1():
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info1 +"'"+ ';'
+    cur = conn.cursor()
+    cur.execute(cmd)
+    sigleCours = str(cur.fetchone())[2:-3]
+
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    note = cur.fetchall()
+    note1 = []
+    nbr_exam =[]
+    for i in range((len(note))):
+        note1.append(str(note[i])[1:-2])
+    print(note)
+
+    for i in range((len(note))):
+        nbr_exam.append("NOTE"+str(i+1))
+
+
+
+
+
+
+
+    bar_labels=labels
+    bar_values=values
+    return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
+@app.route("//Prevision/Calcul2")
+def Calcul2():
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info1 +"'"+ ';'
+    cur = conn.cursor()
+    cur.execute(cmd)
+    sigleCours = str(cur.fetchone())[2:-3]
+
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    note = cur.fetchall()
+    note1 = []
+    nbr_exam =[]
+    for i in range((len(note))):
+        note1.append(str(note[i])[1:-2])
+    print(note)
+
+    for i in range((len(note))):
+        nbr_exam.append("NOTE"+str(i+1))
+
+
+
+
+
+
+
+    bar_labels=labels
+    bar_values=values
+    return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
+
+@app.route("//Prevision/Calcul3")
+def Calcul3():
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info1 +"'"+ ';'
+    cur = conn.cursor()
+    cur.execute(cmd)
+    sigleCours = str(cur.fetchone())[2:-3]
+
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    note = cur.fetchall()
+    note1 = []
+    nbr_exam =[]
+    for i in range((len(note))):
+        note1.append(str(note[i])[1:-2])
+    print(note)
+
+    for i in range((len(note))):
+        nbr_exam.append("NOTE"+str(i+1))
+
+
+
+
+
+
+
+    bar_labels=labels
+    bar_values=values
+    return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
+
+@app.route("//Prevision/Calcul4")
+def Calcul4():
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info1 +"'"+ ';'
+    cur = conn.cursor()
+    cur.execute(cmd)
+    sigleCours = str(cur.fetchone())[2:-3]
+
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    note = cur.fetchall()
+    note1 = []
+    nbr_exam =[]
+    for i in range((len(note))):
+        note1.append(str(note[i])[1:-2])
+    print(note)
+
+    for i in range((len(note))):
+        nbr_exam.append("NOTE"+str(i+1))
+
+
+
+
+
+
+
+    bar_labels=labels
+    bar_values=values
+    return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
+
+@app.route("//Prevision/Calcul5")
+def Calcul5():
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info1 +"'"+ ';'
+    cur = conn.cursor()
+    cur.execute(cmd)
+    sigleCours = str(cur.fetchone())[2:-3]
+
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    note = cur.fetchall()
+    note1 = []
+    nbr_exam =[]
+    for i in range((len(note))):
+        note1.append(str(note[i])[1:-2])
+    print(note)
+
+    for i in range((len(note))):
+        nbr_exam.append("NOTE"+str(i+1))
+
+
+
+
+
+
+
+    bar_labels=labels
+    bar_values=values
+    return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
+@app.route("//Prevision/Calcul6")
+def Calcul6():
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info1 +"'"+ ';'
+    cur = conn.cursor()
+    cur.execute(cmd)
+    sigleCours = str(cur.fetchone())[2:-3]
+
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    note = cur.fetchall()
+    note1 = []
+    nbr_exam =[]
+    for i in range((len(note))):
+        note1.append(str(note[i])[1:-2])
+    print(note)
+
+    for i in range((len(note))):
+        nbr_exam.append("NOTE"+str(i+1))
+
+
+
+
+
+
+
+    bar_labels=labels
+    bar_values=values
+    return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
 if __name__ == "__main__":
     app.run()

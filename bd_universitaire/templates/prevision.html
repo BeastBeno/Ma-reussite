@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" href="../static/bootstrap-4.3.1.css">
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <style type="text/css">
+    .connection {
+}
+    </style>
+	  
+	 <script>
+        function testVariable() {
+            var strText = document.getElementById("textone").value;          
+            var strText1 = document.getElementById("textTWO").value;
+            var result = strText + ' ' + strText1;
+            document.getElementById('spanResult').textContent = result;
+             
+        }
+    </script>
+  </head>
+  <body>
+<header>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="Sanstitre-2.html">Acceuil <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('Profile') }}">Mon Compte</a>
+          </li>
+          <li class="nav-item dropdown">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  <script src="./js/jquery-3.3.1.min.js"></script>
+<div class="jumbotron">
+    <div class="modal-body modal-body-step-1 is-showing">
+      <div class="titlee">Page de prévision pour le cours:</div>
+      <div class="descriptionn">Veuillez entrer la moyenne désirée et le coefficient du final</div>
+      <form>
+		 
+		  <input type="text" id="textone" placeholder="Moyenne désirée"/>
+    <input type="text" id="textTWO" placeholder="Coefficient du final"/>
+        
+      </form>
+		<div class="text-center">
+			
+          <button  class="btn btn-primary btn-lg" onclick="testVariable()">Soumettre</button> <br />
+    
+			
+
+  
+  <label>Reponse: </label>
+  <p><span id="spanResult">
+	  
+	  </span></p>
+        </div>
+    </div>
+  </div>
+</header>
+    
+    <footer class="text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <p>Copyright © Le café, ça aide. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+    <script src="../static/jquery-3.3.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed --> 
+    <script src="../static/popper.min.js"></script>
+    <script src="../static/bootstrap-4.3.1.js"></script>
+  </body>
+</html>
