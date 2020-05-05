@@ -2695,18 +2695,38 @@ INSERT INTO Suivre(idul, sigleCours, sessions, moyenne)
 	('DIBAX',  'PHI-2910', 'Hiver', 3),
 	('DIBAX',  'IFT-2002', 'Hiver', 3),
 	('DIBAX',  'GLO-2005', 'Hiver', 3),
-	('DIBAX',  'MAT-1900', 'Hiver', 3),
+	('DIBAX',  'GMC-1003', 'Hiver', 3),
 	('DIBAX',  'GMN-2901', 'Hiver', 3);
 
 INSERT INTO Note(id, idul,sigleCours, NumeroEvaluation, ponderation, note)
 	VALUE
-	(1, 'DIBAX',  'ECN-2901',1,0.25, 65),
-	(2, 'DIBAX',  'ECN-2901',2,0.25, 65),
-	(3, 'DIBAX',  'ECN-2901',3,0.25, 65),
-	(4, 'DIBAX',  'PHI-2910',1,0.35, 70),
-	(5, 'DIBAX',  'IFT-2002',1,0.30, 45),
-	(6, 'DIBAX',  'GLO-2005',1,0.25, 30),
-	(7, 'DIBAX',  'GMN-2901',1,0.33, 48);
+	(1, 'DIBAX',  'ECN-2901',1,0.25, 70),
+	(2, 'DIBAX',  'ECN-2901',2,0.25, 95),
+	(3, 'DIBAX',  'ECN-2901',3,0.25, 50),
+	(4, 'DIBAX',  'PHI-2910',1,0.05, 70),
+	(5, 'DIBAX',  'PHI-2910',2,0.4, 80),
+	(6, 'DIBAX',  'PHI-2910',3,0.05, 60),
+	(7, 'DIBAX',  'PHI-2910',4,0.1, 100),
+	(8, 'DIBAX',  'IFT-2002',1,0.35, 79),
+	(9, 'DIBAX',  'IFT-2002',2,0.1, 87),
+	(10, 'DIBAX',  'IFT-2002',3,0.1, 98),
+	(11, 'DIBAX',  'IFT-2002',4,0.09, 88),
+	(12, 'DIBAX',  'GLO-2005',1,0.3, 80),
+	(13, 'DIBAX',  'GLO-2005',2,0.4, 75),
+	(14, 'DIBAX',  'GLO-2005',3,0.15, 95),
+	(15, 'DIBAX',  'GMN-2901',1,0.05, 100),
+	(16, 'DIBAX',  'GMN-2901',2,0.05, 100),
+	(17, 'DIBAX',  'GMN-2901',3,0.05, 100),
+	(18, 'DIBAX',  'GMN-2901',4,0.05, 100),
+	(19, 'DIBAX',  'GMN-2901',5,0.05, 90),
+	(20, 'DIBAX',  'GMN-2901',6,0.05, 90),
+	(21, 'DIBAX',  'GMN-2901',7,0.05, 85),
+	(22, 'DIBAX',  'GMN-2901',8,0.35, 92),
+	(23, 'DIBAX',  'GMN-2901',1,0.05, 85),
+	(24, 'DIBAX',  'GMC-1003',2,0.2, 45),
+	(25, 'DIBAX',  'GMC-1003',3,0.4, 58),
+	(26, 'DIBAX',  'GMC-1003',4,0.2, 90);
+
 
 
 /*
