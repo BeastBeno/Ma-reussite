@@ -93,6 +93,7 @@ def register():
         credit = request.form.get('credit')
         nom = "'" + request.form.get('nom') + "'"
         sigleProgramme = "'" + request.form.get('sigleProgramme') + "'"
+        global motivation
         motivation = 5
 
         cmd = 'SELECT * FROM Etudiant WHERE idul='+ idul +';'
@@ -171,7 +172,7 @@ def Cours1():
 
     bar_labels=labels
     bar_values=values
-    return render_template('Sanstitre-6.html', max=100, labels=nbr_exam, values=note1)
+    return render_template('graphique.html', max=100, labels=nbr_exam, values=note1,title=info1)
 @app.route("//Cours/Calul2")
 def Cours2():
     cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info2+"'"+ ';'
@@ -197,7 +198,7 @@ def Cours2():
 
     bar_labels=labels
     bar_values=values
-    return render_template('Sanstitre-6.html', max=100, labels=nbr_exam, values=note1)
+    return render_template('graphique.html', max=100, labels=nbr_exam, values=note1, title=info2)
 
 @app.route("//Cours/Calul3")
 def Cours3():
@@ -228,7 +229,7 @@ def Cours3():
 
     bar_labels=labels
     bar_values=values
-    return render_template('Sanstitre-6.html', max=100, labels=nbr_exam, values=note1)
+    return render_template('graphique.html', max=100, labels=nbr_exam, values=note1, title=info3)
 
 
 
@@ -261,7 +262,7 @@ def Cours4():
 
     bar_labels=labels
     bar_values=values
-    return render_template('Sanstitre-6.html', max=100, labels=nbr_exam, values=note1)
+    return render_template('graphique.html', max=100, labels=nbr_exam, values=note1, title=info4)
 
 
 @app.route("//Cours/Calul5")
@@ -293,11 +294,18 @@ def Cours5():
 
     bar_labels=labels
     bar_values=values
-    return render_template('Sanstitre-6.html', max=100, labels=nbr_exam, values=note1)
+    return render_template('graphique.html', max=100, labels=nbr_exam, values=note1, title=info5)
 
 @app.route("//Cours/Profile")
 def Profile():
-    return render_template('Profile.html')
+
+    cmd = 'SELECT p.nom FROM Programme p, Etudiant e WHERE e.idul=' + idul +  'and e.sigleProgramme = p.sigleProgramme;'
+    cur = conn.cursor()
+    cur.execute(cmd)
+    nomProg = str(cur.fetchone())[2:-3]
+    motivation = 5
+
+    return render_template('profile.html', prog=nomProg, motiv=motivation)
 
 
 
