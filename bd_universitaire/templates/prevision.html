@@ -20,7 +20,16 @@
             document.getElementById('spanResult').textContent = result;
              
         }
+
     </script>
+      <script>
+              $.ajax({
+       url: "../venv/moyenne.py", data: { param: text},
+       success: function(response) {
+         // here you do whatever you want with the response variable
+       }
+    });
+      </script>
   </head>
   <body>
 <header>
@@ -54,26 +63,28 @@
   <script src="./js/jquery-3.3.1.min.js"></script>
 <div class="jumbotron">
     <div class="modal-body modal-body-step-1 is-showing">
-      <div class="titlee">Page de prévision pour le cours:</div>
-      <div class="descriptionn">Veuillez entrer la moyenne désirée et le coefficient du final</div>
-      <form>
+      <div class="titlee">Page de prévision pour le cours: {{title}}</div>
+      <div class="descriptionn">Veuillez entrer la moyenne désirée et le coefficient du final </div>
+      <form action="{{ url_for('Calcul1') }}" method="post" autocomplete="off">
 		 
-		  <input type="text" id="textone" placeholder="Moyenne désirée"/>
-    <input type="text" id="textTWO" placeholder="Coefficient du final"/>
-        
+		  <input type="text" id="textone" required name="textone" placeholder="Moyenne désirée"/>
+    <input type="text" id="textTWO" required name="textTWO" placeholder="Coefficient du final"/>
+
+          <input type="submit" class="btn btn-primary btn-lg" value="Soumettre ">
+
       </form>
 		<div class="text-center">
 			
-          <button  class="btn btn-primary btn-lg" onclick="testVariable()">Soumettre</button> <br />
+
     
 			
 
   
-  <label>Reponse: </label>
-  <p><span id="spanResult">
-	  
-	  </span></p>
+  <label>La note à obtenir pour le prochain examen afin d'obtenir la moyenne finale {{moyfina}} % est : {{final}} %</label>
+
+            <p>La moyenne pondérée actuelle du cours est : {{moyenne}} %</p>
         </div>
+        <div class="msg">{{ msg }}</div>
     </div>
   </div>
 </header>
@@ -82,7 +93,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <p>Copyright © Le café, ça aide. All rights reserved.</p>
+            <p>Copyright © MaRéussite2.0. All rights reserved.</p>
           </div>
         </div>
       </div>
