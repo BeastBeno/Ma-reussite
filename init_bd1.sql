@@ -68,9 +68,19 @@ CREATE TABLE Suivre(
 	idul varchar(100),
     sigleCours varchar(100),
     sessions varchar(100),
-	moyenne smallint,
+	moyenne float,
     PRIMARY KEY(idul,  sigleCours),
     FOREIGN KEY(idul) REFERENCES Etudiant(idul),
+    FOREIGN KEY(sigleCours) REFERENCES Cours(sigleCours)
+	);
+
+CREATE TABLE Note(
+    id smallint PRIMARY KEY,
+	idul varchar(100),
+    sigleCours varchar(100),
+    numeroEvaluation smallint,
+    ponderation  smallint,
+    FOREIGN KEY(idul) REFERENCES Suivre(idul),
     FOREIGN KEY(sigleCours) REFERENCES Cours(sigleCours)
 	);
 
@@ -2685,6 +2695,15 @@ INSERT INTO Suivre(idul, sigleCours, sessions, moyenne)
 	('GAJAC',  'IFT-2002', 'Hiver', 3),
 	('GAJAC',  'GLO-2005', 'Hiver', 3),
 	('GAJAC',  'GMN-2901', 'Hiver', 3);
+
+INSERT INTO Note(id, idul,sigleCours, NumeroEvaluation, ponderation)
+	VALUE
+	(1, 'DIBAX',  'ECN-2901',1,25),
+	(2, 'DIBAX',  'PHI-2910',1,35),
+	(3, 'DIBAX',  'IFT-2002',1,30),
+	(4, 'DIBAX',  'GLO-2005',1,25),
+	(5, 'DIBAX',  'GMN-2901',1,33);
+
 
 /*
 CREATE TABLE Emprunts(
