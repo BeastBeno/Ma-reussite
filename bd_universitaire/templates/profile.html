@@ -1,35 +1,84 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Light Theme</title>
-<link href="../static/simpleGridTemplate.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-<div class="container"> 
-  <header class="header">
-<div class="button"><a href="{{ url_for('Acceuil') }}">Acceuil </a></div>
-    <h4 class="logo">Résumé de votre profil&nbsp;&nbsp;</h4>
-</header>
-<section class="intro">
-    <div class="column">
-      <h3>Diete Baxter</h3>
-<img src="../static/profile.png" alt="" class="profile"> </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Profil</title>
+    <link rel="stylesheet" href="../static/bootstrap-4.3.1.css">
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <style type="text/css">
+    .connection {
+}
+    </style>
+  </head>
+  <body>
+<header>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('Acceuil') }}">Acceuil <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('Profile') }}">Mon Compte</a>
+          </li>
+          <li class="nav-item dropdown">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  <script src="./js/jquery-3.3.1.min.js"></script>
+<div class="jumbotron">
+    <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="text-center"><strong>Mon Profil&nbsp; &nbsp;</strong></h1>
+              <section class="intro">
+    
 <div class="column">
-      <p> Programme :</p>
-      <p>Année d'étude:</p>
-      <p>Nombre d'objectif:&nbsp; </p>
-      <p>Motivation actuelle :</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+      <p  class="text-center">Programme : {{prog}}</p>
+      <p  class="text-center">Année d'étude: 2020</p>
+      <p  class="text-center">Nombre de crédit cours: 18 crédits </p>
+      <p  class="text-center">Motivation actuelle : {{motiv}} </p>
+
     </div>
   </section>
-  <footer id="contact">
-    <p class="hero_header">Changer de profil</p>
-    <div class="button">Modifier vos informations&nbsp; </div>
-</footer>
+            </div>
+          </div>
+        </div>
   </div>
-</body>
+</header>
+    
+    
+    <footer class="text-center">
+		<p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button">Modifier votre profil</a> </p>
+    <p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button">Déconnexion</a> </p>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <p>Copyright © Finalement on a pas dormi, All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+    <script src="../static/jquery-3.3.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed --> 
+    <script src="../static/popper.min.js"></script>
+    <script src="../static/bootstrap-4.3.1.js"></script>
+  </body>
 </html>

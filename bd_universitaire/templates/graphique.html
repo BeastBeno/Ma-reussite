@@ -22,7 +22,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="Sanstitre-2.html">Acceuil <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{{ url_for('Acceuil') }}">Acceuil <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('Profile') }}">Mon Compte</a>
@@ -47,7 +47,9 @@
     <div class="container">
           <section class="mainContent">
       <div class="text-center">
-	    <h1><strong>Tableau des notes</strong></h1>
+	    <h1><strong>Tableau des notes: </strong></h1>
+          <h1>{{title}}</h1>
+
         <canvas id="chart" width="600" height="400"></canvas>
     <script>
       // bar chart data
