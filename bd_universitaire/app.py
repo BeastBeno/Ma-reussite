@@ -30,9 +30,24 @@ import pymysql.cursors
 import re
 from password import makehash
 
+labels = [
+    'JAN', 'FEB', 'MAR', 'APR',
+    'MAY', 'JUN', 'JUL', 'AUG',
+    'SEP', 'OCT', 'NOV', 'DEC'
+]
+
+values = [1,2,3,4,5]
+
+colors = [
+    "#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA",
+    "#ABCDEF", "#DDDDDD", "#ABCABC", "#4169E1",
+    "#C71585", "#FF4500", "#FEDCBA", "#46BFBD"]
+
+
+
 conn = pymysql.connect(host='localhost',
                            user='root',
-                           password='pr@j?vision100%@$!',
+                           password='Reussite2019',
                            db='bd_universitaire')
 
 
@@ -48,7 +63,7 @@ def login():
     if request.method == 'GET':
         pass
     if request.method == 'POST':
-
+        global idul
         idul = '"'+request.form.get('username')+'"'
         passe = makehash(request.form.get('password'))
         cmd = 'SELECT motDePasse FROM Etudiant WHERE idul='+idul+';'
@@ -109,16 +124,177 @@ def Acceuil():
 
 @app.route("//Cours")
 def Cours():
-    return render_template('Sanstitre-3.html')
+    cmd = 'SELECT c.nom FROM Cours c, Suivre s WHERE s.idul=' + idul + 'and c.sigleCours= s.sigleCours ;'
+    cur = conn.cursor()
+    cur.execute(cmd)
+
+    info = cur.fetchall()
+    global info1,info2,info3,info3,info4,info5,info5
+    info1 = str(info[0])[2:-3]
+    info2 = str(info[1])[2:-3]
+    info3 = str(info[2])[2:-3]
+    info4 = str(info[3])[2:-3]
+    info5 = str(info[4])[2:-3]
+    info6 = str(info[5])[2:-3]
+
+
+
+
+    print(info)
+    return render_template('Sanstitre-3.html', cours01=info1,cours02=info2,cours03=info3,cours04=info4,cours05=info5,cours06=info6)
 @app.route("//Cours/Calul")
 def Cours1():
-    return render_template('Sanstitre-6.html')
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info1 +"'"+ ';'
+    cur = conn.cursor()
+    cur.execute(cmd)
+    sigleCours = str(cur.fetchone())[2:-3]
 
-@app.route("//Cours/Calul/chart")
-def chart():
-    labels = ["January","February","March","April","May","June","July","August"]
-    values = [10,9,8,7,6,4,7,8]
-    return render_template('chart.html', values=values, labels=labels)
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    note = cur.fetchall()
+    note1 = []
+    nbr_exam =[]
+    for i in range((len(note))):
+        note1.append(str(note[i])[1:-2])
+    print(note)
+
+    for i in range((len(note))):
+        nbr_exam.append("NOTE"+str(i+1))
+
+
+
+
+
+
+
+    bar_labels=labels
+    bar_values=values
+    return render_template('Sanstitre-6.html', max=100, labels=nbr_exam, values=note1)
+@app.route("//Cours/Calul2")
+def Cours2():
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info2+"'"+ ';'
+    cur = conn.cursor()
+    cur.execute(cmd)
+    sigleCours = str(cur.fetchone())[2:-3]
+
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    note = cur.fetchall()
+    note1 = []
+    nbr_exam =[]
+    for i in range((len(note))):
+        note1.append(str(note[i])[1:-2])
+    print(note)
+
+    for i in range((len(note))):
+        nbr_exam.append("NOTE"+str(i+1))
+
+
+
+    bar_labels=labels
+    bar_values=values
+    return render_template('Sanstitre-6.html', max=100, labels=nbr_exam, values=note1)
+
+@app.route("//Cours/Calul3")
+def Cours3():
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info3+"'"+ ';'
+    cur = conn.cursor()
+    cur.execute(cmd)
+    sigleCours = str(cur.fetchone())[2:-3]
+
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    note = cur.fetchall()
+    note1 = []
+    nbr_exam =[]
+    for i in range((len(note))):
+        note1.append(str(note[i])[1:-2])
+    print(note)
+
+    for i in range((len(note))):
+        nbr_exam.append("NOTE"+str(i+1))
+
+
+
+
+
+
+
+    bar_labels=labels
+    bar_values=values
+    return render_template('Sanstitre-6.html', max=100, labels=nbr_exam, values=note1)
+
+
+
+@app.route("//Cours/Calul4")
+def Cours4():
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info4+"'"+ ';'
+    cur = conn.cursor()
+    cur.execute(cmd)
+    sigleCours = str(cur.fetchone())[2:-3]
+
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    note = cur.fetchall()
+    note1 = []
+    nbr_exam =[]
+    for i in range((len(note))):
+        note1.append(str(note[i])[1:-2])
+    print(note)
+
+    for i in range((len(note))):
+        nbr_exam.append("NOTE"+str(i+1))
+
+
+
+
+
+
+
+    bar_labels=labels
+    bar_values=values
+    return render_template('Sanstitre-6.html', max=100, labels=nbr_exam, values=note1)
+
+
+@app.route("//Cours/Calul5")
+def Cours5():
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info5+"'"+ ';'
+    cur = conn.cursor()
+    cur.execute(cmd)
+    sigleCours = str(cur.fetchone())[2:-3]
+
+    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
+    print(cmd)
+    cur = conn.cursor()
+    cur.execute(cmd)
+    note = cur.fetchall()
+    note1 = []
+    nbr_exam =[]
+    for i in range((len(note))):
+        note1.append(str(note[i])[1:-2])
+    print(note)
+
+    for i in range((len(note))):
+        nbr_exam.append("NOTE"+str(i+1))
+
+
+
+
+
+
+
+    bar_labels=labels
+    bar_values=values
+    return render_template('Sanstitre-6.html', max=100, labels=nbr_exam, values=note1)
+
 @app.route("//Cours/Profile")
 def Profile():
     return render_template('Profile.html')

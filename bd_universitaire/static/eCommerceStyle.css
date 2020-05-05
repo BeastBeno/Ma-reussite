@@ -5,7 +5,7 @@ a:hover {
 }
 /*header*/
 header {
-	font-family: 'Montserrat', sans-serif;
+	font-family: sans-serif;
 	color: rgba(146,146,146,1.00);
 	font-size: 16px;
 	font-style: normal;
@@ -394,6 +394,7 @@ header #headerLinks a {
 	position: relative;
 	padding-left: 24%;
 }
+h1{font-family: sans-serif}
 /* Container for links in footer */
 #mainWrapper footer .footerlinks {
 	padding-left: 8%;
