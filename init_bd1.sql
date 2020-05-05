@@ -2727,7 +2727,41 @@ INSERT INTO Note(id, idul,sigleCours, NumeroEvaluation, ponderation, note)
 	(25, 'DIBAX',  'GMC-1003',3,0.4, 58),
 	(26, 'DIBAX',  'GMC-1003',4,0.2, 90);
 
-
+DELIMITER |
+Create Trigger AssignDefaultClasses_trigger
+Before INSERT On Etudiant
+FOR EACH ROW
+BEGIN
+    Insert into Suivre(idul, sigleCours, sessions, moyenne) value
+    (New.idul, 'GEL-1001','Hiver', 3),
+    (New.idul, 'MAT-1900','Hiver', 3),
+    (New.idul, 'MAT-1919','Hiver', 3),
+    (New.idul, 'GLO-1111','Hiver', 3),
+    (New.idul, 'ECN-2901', 'Hiver', 3),
+	(New.idul, 'IFT-2002', 'Hiver', 3);
+    INSERT INTO Note(id, idul,sigleCours, NumeroEvaluation, ponderation, note)
+	VALUE
+	(31, New.idul,  'ECN-2901',1,0.25, 70),
+	(23, New.idul,  'ECN-2901',2,0.25, 95),
+	(33, New.idul,  'ECN-2901',3,0.25, 50),
+	(266,New.idul,'GLO-1111',1,0.25, 70),
+	(274,New.idul,'GLO-1111',1,0.25, 70),
+	(227,New.idul,'GLO-1111',1,0.25, 70),
+	(2626,New.idul,'IFT-2002',1,0.25, 70),
+	(272,New.idul,'IFT-2002',1,0.25, 70),
+	(2337,New.idul,'IFT-2002',1,0.25, 70),
+	(544, New.idul,  'MAT-1919',1,0.05, 70),
+	(576, New.idul,  'MAT-1919',2,0.4, 80),
+	(665, New.idul,  'MAT-1919',3,0.05, 60),
+	(756, New.idul,  'MAT-1919',4,0.1, 100),
+	(238, New.idul,  'MAT-1900',1,0.35, 79),
+	(469, New.idul,  'MAT-1900',2,0.1, 87),
+	(160, New.idul,  'MAT-1900',3,0.1, 98),
+	(811, New.idul,  'GEL-1001',4,0.09, 88),
+	(612, New.idul,  'GEL-1001',1,0.3, 80),
+	(1753, New.idul,  'GEL-1001',2,0.4, 75);
+END |
+DELIMITER ;
 
 /*
 CREATE TABLE Emprunts(
