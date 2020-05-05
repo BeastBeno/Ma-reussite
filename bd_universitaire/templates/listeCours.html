@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Resume Page Template</title>
+    <!-- Bootstrap -->
+    <link href="../static/bootstrap-4.3.1.css" rel="stylesheet">
+  </head>
+  <body>
+	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('Acceuil') }}">Acceuil <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('Profile') }}">Mon Compte</a>
+          </li>
+          <li class="nav-item dropdown">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  <script src="./js/jquery-3.3.1.min.js"></script>
+<section>
+  <div class="container">
+      <div class="row">
+        <div class="col-lg-12 mb-4 mt-2 text-center">
+          <h2>Listes de vos cours</h2>
+        </div>
+      </div>
+  </div>
+    <div class="container ">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 text-center"> <a href="{{ url_for('Calcul1') }}"><img class="rounded-circle" alt="140x140" style="width: 140px; height: 140px;" src="../static/fountain-pen-1851096_1920.jpg" data-holder-rendered="true"></a>
+          <h3>{{ cours01 }}</h3>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 text-center"> <a href="{{ url_for('Calcul2') }}"><img src="../static/l_gestion-client-bureau-etude-everwin-cxm.jpg" alt="140x140" class="rounded-circle" style="width: 140px; height: 140px;" data-holder-rendered="true"></a>
+          <h3>{{ cours02 }}</h3>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 text-center"><a href="{{ url_for('Calcul3') }}"> <img class="rounded-circle" alt="140x140" style="width: 140px; height: 140px;" src="../static/18040e043052.jpg" data-holder-rendered="true"></a>
+          <h3>{{ cours03 }}</h3>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 text-center"><a href="{{ url_for('Calcul4') }}"> <img class="rounded-circle" alt="140x140" style="width: 140px; height: 140px;" src="../static/bureau-détude-e1512540742981.jpg" data-holder-rendered="true"></a>
+          <h3>{{ cours04 }}</h3>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 text-center"><a href="{{ url_for('Calcul5') }}"> <img class="rounded-circle" alt="140x140" style="width: 140px; height: 140px;" src="../static/images25.jpg" data-holder-rendered="true"></a>
+          <h3>{{ cours05 }}</h3>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 text-center"><a href="{{ url_for('Calcul6') }}"> <img class="rounded-circle" alt="140x140" style="width: 140px; height: 140px;" src="../static/unnamed.jpg" data-holder-rendered="true"></a>
+          <h3>{{ cours06 }}</h3>
+        </div>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center"><br>
+        </p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p>&nbsp;</p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center">&nbsp;</p>
+        <p class="text-center"> </p>
+        <p class="text-center">&nbsp; </p>
+      </div>
+    </div>
+  </section>
+<script src="../static/popper.min.js"></script>
+  <script src="../static/bootstrap-4.3.1.js"></script>
+  <footer class="text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <p>Copyright © c'est vrai, on ment pas. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>
