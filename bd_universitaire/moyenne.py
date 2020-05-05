@@ -1,11 +1,11 @@
 
 
-a = [65, 81.25]
-b = [0.3, 0.35]
-c = [100, 100]
+a = [70, 95, 50]
+b = [0.25, 0.25, 0.25]
+c = [100, 100, 100]
 
-moyenneaatteindre = 81.19
-coeffdufinal = 0.35
+moyenneaatteindre = 80
+coeffdufinal = 0.25
 totaldufinal = 100
 
 def atteindre(notes, coefficients, totaux, moyenneaatteindre, coeffdufinal, totaldufinal):
@@ -45,6 +45,3 @@ def moyenne_ponderee(notes,coefficients,totaux):
         moyenne= round(somme*100/maximum,2)
     return moyenne
 
-print(moyenne_ponderee(a, b, c))
-
-print(atteindre(a,b,c,moyenneaatteindre,coeffdufinal,totaldufinal))

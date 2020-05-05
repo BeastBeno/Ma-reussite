@@ -112,7 +112,7 @@ def register():
             cur = conn.cursor()
             cur.execute(cmd)
             conn.commit()
-            print (cmd)
+
             msg = 'You have successfully registered!'
 
     elif request.method == 'POST':
@@ -147,7 +147,7 @@ def Cours():
 
 
 
-    print(info)
+
     return render_template('Sanstitre-3.html', cours01=info1,cours02=info2,cours03=info3,cours04=info4,cours05=info5,cours06=info6)
 @app.route("//Cours/Calul")
 def Cours1():
@@ -157,7 +157,7 @@ def Cours1():
     sigleCours = str(cur.fetchone())[2:-3]
 
     cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
@@ -165,7 +165,7 @@ def Cours1():
     nbr_exam =[]
     for i in range((len(note))):
         note1.append(str(note[i])[1:-2])
-    print(note)
+
 
     for i in range((len(note))):
         nbr_exam.append("NOTE"+str(i+1))
@@ -187,7 +187,7 @@ def Cours2():
     sigleCours = str(cur.fetchone())[2:-3]
 
     cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
@@ -195,7 +195,7 @@ def Cours2():
     nbr_exam =[]
     for i in range((len(note))):
         note1.append(str(note[i])[1:-2])
-    print(note)
+
 
     for i in range((len(note))):
         nbr_exam.append("NOTE"+str(i+1))
@@ -214,7 +214,7 @@ def Cours3():
     sigleCours = str(cur.fetchone())[2:-3]
 
     cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
@@ -222,7 +222,7 @@ def Cours3():
     nbr_exam =[]
     for i in range((len(note))):
         note1.append(str(note[i])[1:-2])
-    print(note)
+
 
     for i in range((len(note))):
         nbr_exam.append("NOTE"+str(i+1))
@@ -247,7 +247,7 @@ def Cours4():
     sigleCours = str(cur.fetchone())[2:-3]
 
     cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
@@ -255,7 +255,7 @@ def Cours4():
     nbr_exam =[]
     for i in range((len(note))):
         note1.append(str(note[i])[1:-2])
-    print(note)
+
 
     for i in range((len(note))):
         nbr_exam.append("NOTE"+str(i+1))
@@ -279,7 +279,7 @@ def Cours5():
     sigleCours = str(cur.fetchone())[2:-3]
 
     cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
@@ -287,7 +287,7 @@ def Cours5():
     nbr_exam =[]
     for i in range((len(note))):
         note1.append(str(note[i])[1:-2])
-    print(note)
+
 
     for i in range((len(note))):
         nbr_exam.append("NOTE"+str(i+1))
@@ -309,7 +309,7 @@ def Cours6():
     sigleCours = str(cur.fetchone())[2:-3]
 
     cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
@@ -317,7 +317,7 @@ def Cours6():
     nbr_exam =[]
     for i in range((len(note))):
         note1.append(str(note[i])[1:-2])
-    print(note)
+
 
     for i in range((len(note))):
         nbr_exam.append("NOTE"+str(i+1))
@@ -350,7 +350,7 @@ def Prevision():
     cur.execute(cmd)
 
     info = cur.fetchall()
-    global info1,info2,info3,info3,info4,info5,info5
+    global info1,info2,info3,info3,info4,info5,info6
     info1 = str(info[0])[2:-3]
     info2 = str(info[1])[2:-3]
     info3 = str(info[2])[2:-3]
@@ -361,10 +361,10 @@ def Prevision():
 
 
 
-    print(info)
+
     return render_template('listeCours.html', cours01=info1,cours02=info2,cours03=info3,cours04=info4,cours05=info5,cours06=info6)
 
-@app.route("//Prevision/Calcul1")
+@app.route("//Prevision/Calcul1", methods=['GET', 'POST'])
 def Calcul1():
     cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info1 +"'"+ ';'
     cur = conn.cursor()
@@ -372,7 +372,7 @@ def Calcul1():
     sigleCours = str(cur.fetchone())[2:-3]
 
     cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +"'" +sigleCours +"'"+ 'and n.idul = '+idul+';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
@@ -382,9 +382,9 @@ def Calcul1():
     for i in range((len(note))):
         totaux.append(str(100))
         note1.append(str(note[i])[1:-2])
-    print(note)
+
     cmd = 'SELECT n.ponderation FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     ponderation = cur.fetchall()
@@ -392,20 +392,42 @@ def Calcul1():
     nbr_exam = []
     for i in range((len(ponderation))):
         ponderation1.append(str(ponderation[i])[1:-2])
-    print(ponderation1)
+
     for i in range((len(ponderation))):
         nbr_exam.append("NOTE"+str(i+1))
 
     moyenne = moyenne_ponderee(note1, ponderation1, totaux)
+    msg = ''
+    final, moyenneaatteindre = 0., 0.
+    if request.method == 'POST' and 'textone' in request.form and 'textTWO' in request.form:
 
+        if not request.form.get('textone').isalpha() and not request.form.get('textTWO').isalpha():
+
+            if not float(request.form.get('textone')) < 0 and not float(request.form.get('textone')) > 100 and not float(request.form.get('textTWO')) < 0 and not float(request.form.get('textTWO')) > 100:
+                moyenneaatteindre = float(request.form.get('textone'))
+                coeffdufinal = float(request.form.get('textTWO'))
+                totaldufinal = 100
+
+                final = atteindre(note1, ponderation1, totaux, moyenneaatteindre, coeffdufinal, totaldufinal)
+
+                return render_template('prevision.html', msg=msg,  moyfina=moyenneaatteindre, final=final, moyenne=moyenne, labels=nbr_exam,
+                                       values=note1, title=info1)
+            else:
+                msg = 'La saisie doit être comprise entre 0 et 100 !'
+        elif request.form.get('textone').isalpha() or request.form.get('textTWO').isalpha():
+            msg = 'La saisie ne doit pas contenir de texte !'
+    elif request.method == 'POST':
+
+        # Form is empty... (no POST data)
+        msg = 'Veuillez remplir le formulaire !'
 
 
 
 
     bar_labels=labels
     bar_values=values
-    return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
-@app.route("//Prevision/Calcul2")
+    return render_template('prevision.html', msg=msg, final=final, moyenne=moyenne, labels=nbr_exam, values=note1,title=info1)
+@app.route("//Prevision/Calcul2", methods=['GET', 'POST'])
 def Calcul2():
     cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" + info2 + "'" + ';'
     cur = conn.cursor()
@@ -413,7 +435,7 @@ def Calcul2():
     sigleCours = str(cur.fetchone())[2:-3]
 
     cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
@@ -423,9 +445,9 @@ def Calcul2():
     for i in range((len(note))):
         totaux.append(str(100))
         note1.append(str(note[i])[1:-2])
-    print(note)
+
     cmd = 'SELECT n.ponderation FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     ponderation = cur.fetchall()
@@ -433,15 +455,44 @@ def Calcul2():
     nbr_exam = []
     for i in range((len(ponderation))):
         ponderation1.append(str(ponderation[i])[1:-2])
-    print(ponderation1)
+
     for i in range((len(ponderation))):
         nbr_exam.append("NOTE" + str(i + 1))
 
+    moyenne = moyenne_ponderee(note1, ponderation1, totaux)
+    msg = ''
+    final, moyenneaatteindre = 0., 0.
+    if request.method == 'POST' and 'textone' in request.form and 'textTWO' in request.form:
+
+        if not request.form.get('textone').isalpha() and not request.form.get('textTWO').isalpha():
+
+            if not float(request.form.get('textone')) < 0 and not float(
+                    request.form.get('textone')) > 100 and not float(request.form.get('textTWO')) < 0 and not float(
+                    request.form.get('textTWO')) > 100:
+                moyenneaatteindre = float(request.form.get('textone'))
+                coeffdufinal = float(request.form.get('textTWO'))
+                totaldufinal = 100
+
+                final = atteindre(note1, ponderation1, totaux, moyenneaatteindre, coeffdufinal, totaldufinal)
+
+                return render_template('prevision1.html', msg=msg, moyfina=moyenneaatteindre, final=final,
+                                       moyenne=moyenne, labels=nbr_exam,
+                                       values=note1, title=info2)
+            else:
+                msg = 'La saisie doit être comprise entre 0 et 100 !'
+        elif request.form.get('textone').isalpha() or request.form.get('textTWO').isalpha():
+            msg = 'La saisie ne doit pas contenir de texte !'
+    elif request.method == 'POST':
+
+        # Form is empty... (no POST data)
+        msg = 'Veuillez remplir le formulaire !'
+
     bar_labels = labels
     bar_values = values
-    return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
+    return render_template('prevision1.html', msg=msg, final=final, moyenne=moyenne, labels=nbr_exam, values=note1,
+                           title=info2)
 
-@app.route("//Prevision/Calcul3")
+@app.route("//Prevision/Calcul3", methods=['GET', 'POST'])
 def Calcul3():
     cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" + info3 + "'" + ';'
     cur = conn.cursor()
@@ -449,7 +500,7 @@ def Calcul3():
     sigleCours = str(cur.fetchone())[2:-3]
 
     cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
@@ -459,9 +510,9 @@ def Calcul3():
     for i in range((len(note))):
         totaux.append(str(100))
         note1.append(str(note[i])[1:-2])
-    print(note)
+
     cmd = 'SELECT n.ponderation FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     ponderation = cur.fetchall()
@@ -469,15 +520,44 @@ def Calcul3():
     nbr_exam = []
     for i in range((len(ponderation))):
         ponderation1.append(str(ponderation[i])[1:-2])
-    print(ponderation1)
+
     for i in range((len(ponderation))):
         nbr_exam.append("NOTE" + str(i + 1))
 
+    moyenne = moyenne_ponderee(note1, ponderation1, totaux)
+    msg = ''
+    final, moyenneaatteindre = 0., 0.
+    if request.method == 'POST' and 'textone' in request.form and 'textTWO' in request.form:
+
+        if not request.form.get('textone').isalpha() and not request.form.get('textTWO').isalpha():
+
+            if not float(request.form.get('textone')) < 0 and not float(
+                    request.form.get('textone')) > 100 and not float(request.form.get('textTWO')) < 0 and not float(
+                    request.form.get('textTWO')) > 100:
+                moyenneaatteindre = float(request.form.get('textone'))
+                coeffdufinal = float(request.form.get('textTWO'))
+                totaldufinal = 100
+
+                final = atteindre(note1, ponderation1, totaux, moyenneaatteindre, coeffdufinal, totaldufinal)
+
+                return render_template('prevision2.html', msg=msg, moyfina=moyenneaatteindre, final=final,
+                                       moyenne=moyenne, labels=nbr_exam,
+                                       values=note1, title=info3)
+            else:
+                msg = 'La saisie doit être comprise entre 0 et 100 !'
+        elif request.form.get('textone').isalpha() or request.form.get('textTWO').isalpha():
+            msg = 'La saisie ne doit pas contenir de texte !'
+    elif request.method == 'POST':
+
+        # Form is empty... (no POST data)
+        msg = 'Veuillez remplir le formulaire !'
+
     bar_labels = labels
     bar_values = values
-    return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
+    return render_template('prevision2.html', msg=msg, final=final, moyenne=moyenne, labels=nbr_exam, values=note1,
+                           title=info3)
 
-@app.route("//Prevision/Calcul4")
+@app.route("//Prevision/Calcul4", methods=['GET', 'POST'])
 def Calcul4():
     cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" + info4 + "'" + ';'
     cur = conn.cursor()
@@ -485,7 +565,7 @@ def Calcul4():
     sigleCours = str(cur.fetchone())[2:-3]
 
     cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
@@ -495,9 +575,9 @@ def Calcul4():
     for i in range((len(note))):
         totaux.append(str(100))
         note1.append(str(note[i])[1:-2])
-    print(note)
+
     cmd = 'SELECT n.ponderation FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     ponderation = cur.fetchall()
@@ -505,15 +585,44 @@ def Calcul4():
     nbr_exam = []
     for i in range((len(ponderation))):
         ponderation1.append(str(ponderation[i])[1:-2])
-    print(ponderation1)
+
     for i in range((len(ponderation))):
         nbr_exam.append("NOTE" + str(i + 1))
 
+    moyenne = moyenne_ponderee(note1, ponderation1, totaux)
+    msg = ''
+    final, moyenneaatteindre = 0., 0.
+    if request.method == 'POST' and 'textone' in request.form and 'textTWO' in request.form:
+
+        if not request.form.get('textone').isalpha() and not request.form.get('textTWO').isalpha():
+
+            if not float(request.form.get('textone')) < 0 and not float(
+                    request.form.get('textone')) > 100 and not float(request.form.get('textTWO')) < 0 and not float(
+                    request.form.get('textTWO')) > 100:
+                moyenneaatteindre = float(request.form.get('textone'))
+                coeffdufinal = float(request.form.get('textTWO'))
+                totaldufinal = 100
+
+                final = atteindre(note1, ponderation1, totaux, moyenneaatteindre, coeffdufinal, totaldufinal)
+
+                return render_template('prevision3.html', msg=msg, moyfina=moyenneaatteindre, final=final,
+                                       moyenne=moyenne, labels=nbr_exam,
+                                       values=note1, title=info4)
+            else:
+                msg = 'La saisie doit être comprise entre 0 et 100 !'
+        elif request.form.get('textone').isalpha() or request.form.get('textTWO').isalpha():
+            msg = 'La saisie ne doit pas contenir de texte !'
+    elif request.method == 'POST':
+
+        # Form is empty... (no POST data)
+        msg = 'Veuillez remplir le formulaire !'
+
     bar_labels = labels
     bar_values = values
-    return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
+    return render_template('prevision3.html', msg=msg, final=final, moyenne=moyenne, labels=nbr_exam, values=note1,
+                           title=info4)
 
-@app.route("//Prevision/Calcul5")
+@app.route("//Prevision/Calcul5", methods=['GET', 'POST'])
 def Calcul5():
     cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" + info5 + "'" + ';'
     cur = conn.cursor()
@@ -521,7 +630,7 @@ def Calcul5():
     sigleCours = str(cur.fetchone())[2:-3]
 
     cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
@@ -531,9 +640,9 @@ def Calcul5():
     for i in range((len(note))):
         totaux.append(str(100))
         note1.append(str(note[i])[1:-2])
-    print(note)
+
     cmd = 'SELECT n.ponderation FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     ponderation = cur.fetchall()
@@ -541,14 +650,43 @@ def Calcul5():
     nbr_exam = []
     for i in range((len(ponderation))):
         ponderation1.append(str(ponderation[i])[1:-2])
-    print(ponderation1)
+
     for i in range((len(ponderation))):
         nbr_exam.append("NOTE" + str(i + 1))
 
+    moyenne = moyenne_ponderee(note1, ponderation1, totaux)
+    msg = ''
+    final, moyenneaatteindre = 0., 0.
+    if request.method == 'POST' and 'textone' in request.form and 'textTWO' in request.form:
+
+        if not request.form.get('textone').isalpha() and not request.form.get('textTWO').isalpha():
+
+            if not float(request.form.get('textone')) < 0 and not float(
+                    request.form.get('textone')) > 100 and not float(request.form.get('textTWO')) < 0 and not float(
+                    request.form.get('textTWO')) > 100:
+                moyenneaatteindre = float(request.form.get('textone'))
+                coeffdufinal = float(request.form.get('textTWO'))
+                totaldufinal = 100
+
+                final = atteindre(note1, ponderation1, totaux, moyenneaatteindre, coeffdufinal, totaldufinal)
+
+                return render_template('prevision4.html', msg=msg, moyfina=moyenneaatteindre, final=final,
+                                       moyenne=moyenne, labels=nbr_exam,
+                                       values=note1, title=info5)
+            else:
+                msg = 'La saisie doit être comprise entre 0 et 100 !'
+        elif request.form.get('textone').isalpha() or request.form.get('textTWO').isalpha():
+            msg = 'La saisie ne doit pas contenir de texte !'
+    elif request.method == 'POST':
+
+        # Form is empty... (no POST data)
+        msg = 'Veuillez remplir le formulaire !'
+
     bar_labels = labels
     bar_values = values
-    return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
-@app.route("//Prevision/Calcul6")
+    return render_template('prevision4.html', msg=msg, final=final, moyenne=moyenne, labels=nbr_exam, values=note1,
+                           title=info5)
+@app.route("//Prevision/Calcul6", methods=['GET', 'POST'])
 def Calcul6():
     cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" + info6 + "'" + ';'
     cur = conn.cursor()
@@ -556,7 +694,7 @@ def Calcul6():
     sigleCours = str(cur.fetchone())[2:-3]
 
     cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     note = cur.fetchall()
@@ -566,9 +704,9 @@ def Calcul6():
     for i in range((len(note))):
         totaux.append(str(100))
         note1.append(str(note[i])[1:-2])
-    print(note)
+
     cmd = 'SELECT n.ponderation FROM Note n  WHERE n.sigleCours =' + "'" + sigleCours + "'" + 'and n.idul = ' + idul + ';'
-    print(cmd)
+
     cur = conn.cursor()
     cur.execute(cmd)
     ponderation = cur.fetchall()
@@ -576,12 +714,41 @@ def Calcul6():
     nbr_exam = []
     for i in range((len(ponderation))):
         ponderation1.append(str(ponderation[i])[1:-2])
-    print(ponderation1)
+
     for i in range((len(ponderation))):
         nbr_exam.append("NOTE" + str(i + 1))
 
+    moyenne = moyenne_ponderee(note1, ponderation1, totaux)
+    msg = ''
+    final, moyenneaatteindre = 0., 0.
+    if request.method == 'POST' and 'textone' in request.form and 'textTWO' in request.form:
+
+        if not request.form.get('textone').isalpha() and not request.form.get('textTWO').isalpha():
+
+            if not float(request.form.get('textone')) < 0 and not float(
+                    request.form.get('textone')) > 100 and not float(request.form.get('textTWO')) < 0 and not float(
+                    request.form.get('textTWO')) > 100:
+                moyenneaatteindre = float(request.form.get('textone'))
+                coeffdufinal = float(request.form.get('textTWO'))
+                totaldufinal = 100
+
+                final = atteindre(note1, ponderation1, totaux, moyenneaatteindre, coeffdufinal, totaldufinal)
+
+                return render_template('prevision5.html', msg=msg, moyfina=moyenneaatteindre, final=final,
+                                       moyenne=moyenne, labels=nbr_exam,
+                                       values=note, title=info6)
+            else:
+                msg = 'La saisie doit être comprise entre 0 et 100 !'
+        elif request.form.get('textone').isalpha() or request.form.get('textTWO').isalpha():
+            msg = 'La saisie ne doit pas contenir de texte !'
+    elif request.method == 'POST':
+
+        # Form is empty... (no POST data)
+        msg = 'Veuillez remplir le formulaire !'
+
     bar_labels = labels
     bar_values = values
-    return render_template('prevision.html', max=100, labels=nbr_exam, values=note1,title=info1)
+    return render_template('prevision5.html', msg=msg, final=final, moyenne=moyenne, labels=nbr_exam, values=note1,
+                           title=info6)
 if __name__ == "__main__":
     app.run()
