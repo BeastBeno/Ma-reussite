@@ -24,7 +24,7 @@ if __name__ == "__main__":
     app.run()
 
 '''
-from flask import Flask , render_template , request
+from flask import Flask , render_template , request, Markup
 import pymysql
 import pymysql.cursors
 import re
@@ -32,7 +32,7 @@ from password import makehash
 
 conn = pymysql.connect(host='localhost',
                            user='root',
-                           password='Reussite2019',
+                           password='pr@j?vision100%@$!',
                            db='bd_universitaire')
 
 
@@ -102,12 +102,28 @@ def register():
         msg = 'Please fill out the form!'
     # Show registration form with message (if any)
     return render_template('register.html', msg=msg)
+
+@app.route("//Cours/Acceuil")
+def Acceuil():
+    return render_template('Sanstitre-2.html')
+
 @app.route("//Cours")
 def Cours():
     return render_template('Sanstitre-3.html')
 @app.route("//Cours/Calul")
 def Cours1():
     return render_template('Sanstitre-6.html')
+
+@app.route("//Cours/Calul/chart")
+def chart():
+    labels = ["January","February","March","April","May","June","July","August"]
+    values = [10,9,8,7,6,4,7,8]
+    return render_template('chart.html', values=values, labels=labels)
+@app.route("//Cours/Profile")
+def Profile():
+    return render_template('Profile.html')
+
+
 
 
 
