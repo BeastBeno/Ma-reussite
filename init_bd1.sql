@@ -83,13 +83,13 @@ CREATE TABLE Concentration(
 
 CREATE TABLE Appartient(
 	id smallint PRIMARY KEY,
-    nomConcentration varchar(200),
 	sigleProgramme varchar(100),
 	sigleCours varchar(100),
 	typeCours varchar(1),
 	disponibilite varchar(3),
 	regle varchar(1),
 	creditRegle varchar(2),
+	nomConcentration varchar(200),
 	FOREIGN KEY(sigleProgramme) REFERENCES Programme(sigleProgramme) ON DELETE CASCADE
 	/*FOREIGN KEY(sigleCours) REFERENCES Cours(sigleCours) ON DELETE CASCADE*/
 	/*FOREIGN KEY(nomConcentration) REFERENCES Concentration(nomConcentration)*/
