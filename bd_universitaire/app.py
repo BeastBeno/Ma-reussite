@@ -136,7 +136,7 @@ def Cours():
     cur.execute(cmd)
 
     info = cur.fetchall()
-    global info1,info2,info3,info3,info4,info5,info5, info6
+    global info1,info2,info3,info4,info5, info6
     info1 = str(info[0])[2:-3]
     info2 = str(info[1])[2:-3]
     info3 = str(info[2])[2:-3]
@@ -303,7 +303,7 @@ def Cours5():
     return render_template('graphique.html', max=100, labels=nbr_exam, values=note1, title=info5)
 @app.route("//Cours/Calul6")
 def Cours6():
-    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info5+"'"+ ';'
+    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + "'" +info6+"'"+ ';'
     cur = conn.cursor()
     cur.execute(cmd)
     sigleCours = str(cur.fetchone())[2:-3]
