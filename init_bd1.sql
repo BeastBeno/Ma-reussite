@@ -79,7 +79,8 @@ CREATE TABLE Note(
 	idul varchar(100),
     sigleCours varchar(100),
     numeroEvaluation smallint,
-    ponderation  smallint,
+    ponderation  float,
+    note float,
     FOREIGN KEY(idul) REFERENCES Suivre(idul),
     FOREIGN KEY(sigleCours) REFERENCES Cours(sigleCours)
 	);
@@ -2690,19 +2691,20 @@ INSERT INTO PrealableCours(id, preCours, sigleCours)
 
 INSERT INTO Suivre(idul, sigleCours, sessions, moyenne)
 	VALUE
-	('GAJAC',  'ECN-2901', 'Hiver', 3),
-	('GAJAC',  'PHI-2910', 'Hiver', 3),
-	('GAJAC',  'IFT-2002', 'Hiver', 3),
-	('GAJAC',  'GLO-2005', 'Hiver', 3),
-	('GAJAC',  'GMN-2901', 'Hiver', 3);
+	('DIBAX',  'ECN-2901', 'Hiver', 3),
+	('DIBAX',  'PHI-2910', 'Hiver', 3),
+	('DIBAX',  'IFT-2002', 'Hiver', 3),
+	('DIBAX',  'GLO-2005', 'Hiver', 3),
+	('DIBAX',  'MAT-1900', 'Hiver', 3),
+	('DIBAX',  'GMN-2901', 'Hiver', 3);
 
-INSERT INTO Note(id, idul,sigleCours, NumeroEvaluation, ponderation)
+INSERT INTO Note(id, idul,sigleCours, NumeroEvaluation, ponderation, note)
 	VALUE
-	(1, 'DIBAX',  'ECN-2901',1,25),
-	(2, 'DIBAX',  'PHI-2910',1,35),
-	(3, 'DIBAX',  'IFT-2002',1,30),
-	(4, 'DIBAX',  'GLO-2005',1,25),
-	(5, 'DIBAX',  'GMN-2901',1,33);
+	(1, 'DIBAX',  'ECN-2901',1,0.25, 80),
+	(2, 'DIBAX',  'PHI-2910',1,0.35, 70),
+	(3, 'DIBAX',  'IFT-2002',1,0.30, 45),
+	(4, 'DIBAX',  'GLO-2005',1,0.25, 30),
+	(5, 'DIBAX',  'GMN-2901',1,0.33, 48);
 
 
 /*
