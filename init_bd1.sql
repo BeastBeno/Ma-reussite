@@ -2700,11 +2700,13 @@ INSERT INTO Suivre(idul, sigleCours, sessions, moyenne)
 
 INSERT INTO Note(id, idul,sigleCours, NumeroEvaluation, ponderation, note)
 	VALUE
-	(1, 'DIBAX',  'ECN-2901',1,0.25, 80),
-	(2, 'DIBAX',  'PHI-2910',1,0.35, 70),
-	(3, 'DIBAX',  'IFT-2002',1,0.30, 45),
-	(4, 'DIBAX',  'GLO-2005',1,0.25, 30),
-	(5, 'DIBAX',  'GMN-2901',1,0.33, 48);
+	(1, 'DIBAX',  'ECN-2901',1,0.25, 65),
+	(2, 'DIBAX',  'ECN-2901',2,0.25, 65),
+	(3, 'DIBAX',  'ECN-2901',3,0.25, 65),
+	(4, 'DIBAX',  'PHI-2910',1,0.35, 70),
+	(5, 'DIBAX',  'IFT-2002',1,0.30, 45),
+	(6, 'DIBAX',  'GLO-2005',1,0.25, 30),
+	(7, 'DIBAX',  'GMN-2901',1,0.33, 48);
 
 
 /*
