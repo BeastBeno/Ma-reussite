@@ -49,7 +49,7 @@ colors = [
 
 conn = pymysql.connect(host='localhost',
                            user='root',
-                           password='theonina',
+                           password='Reussite2019',
                            db='bd_universitaire')
 
 
@@ -339,9 +339,13 @@ def Profile():
     cur = conn.cursor()
     cur.execute(cmd)
     nomProg = str(cur.fetchone())[2:-3]
-    motivation = 5
 
-    return render_template('profile.html', prog=nomProg, motiv=motivation)
+    cmd = 'SELECT nom FROM Etudiant WHERE idul=' + idul + ';'
+    cur = conn.cursor()
+    cur.execute(cmd)
+    nom = str(cur.fetchone())[2:-3]
+    motivation = 5
+    return render_template('profile.html', prog=nomProg, motiv=motivation, nom=nom)
 
 @app.route("//Prevision")
 def Prevision():

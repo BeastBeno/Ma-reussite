@@ -21,7 +21,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="{{ url_for('Acceuil') }}">Acceuil <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{{ url_for('Acceuil1')}}">Acceuil <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('Profile') }}">Mon Compte</a>
@@ -46,7 +46,8 @@
     <div class="container">
           <div class="row">
             <div class="col-12">
-              <h1 class="text-center"><strong>Mon Profil&nbsp; &nbsp;</strong></h1>
+                <h1 class="text-center"><strong>{{nom}}&nbsp;</strong></h1>
+              <h1 class="text-center">Mon Profil&nbsp; &nbsp;</h1>
               <section class="intro">
     
 <div class="column">
@@ -66,7 +67,7 @@
     
     <footer class="text-center">
 		<p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button">Modifier votre profil</a> </p>
-    <p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button">Déconnexion</a> </p>
+    <p class="text-center"><a class="btn btn-primary btn-lg" href="{{ url_for('login') }}" role="button">Déconnexion</a> </p>
       <div class="container">
         <div class="row">
           <div class="col-12">
