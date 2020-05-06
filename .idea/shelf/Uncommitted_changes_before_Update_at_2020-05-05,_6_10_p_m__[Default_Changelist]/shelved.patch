@@ -1,0 +1,80 @@
+Index: bd_universitaire/app.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>'''\nfrom flask import Markup\nfrom flask import Flask\nfrom flask import render_template\napp = Flask(__name__)\n\napp.config['MYSQL_HOST'] = 'localhost'\napp.config['MYSQL_USER'] = 'root'\napp.config['MYSQL_PASSWORD'] = 'pr@j?vision100%@$!'\napp.config['MYSQL_DB'] = 'bd_universitaire'\n\nmysql = MySQL(app)\n@app.route('/bd_universitaire/', methods=['GET', 'POST'])\ndef login():\n    return render_template('../mon site web/Sanstitre-2.html', msg='')\n@app.route(\"/\")\ndef chart():\n    return render_template('../Site web/Connexion - Université Laval.html')\n\nif __name__ == \"_main_\":\n    app.run(host='0.0.0.0', port=5001)\n\nif __name__ == \"__main__\":\n    app.run()\n\n'''\nfrom flask import Flask , render_template , request, Markup\nimport pymysql\nimport pymysql.cursors\nimport re\nfrom password import makehash\n\nlabels = [\n    'JAN', 'FEB', 'MAR', 'APR',\n    'MAY', 'JUN', 'JUL', 'AUG',\n    'SEP', 'OCT', 'NOV', 'DEC'\n]\n\nvalues = [1,2,3,4,5]\n\ncolors = [\n    \"#F7464A\", \"#46BFBD\", \"#FDB45C\", \"#FEDCBA\",\n    \"#ABCDEF\", \"#DDDDDD\", \"#ABCABC\", \"#4169E1\",\n    \"#C71585\", \"#FF4500\", \"#FEDCBA\", \"#46BFBD\"]\n\n\n\nconn = pymysql.connect(host='localhost',\n                           user='root',\n                           password='Reussite2019',\n                           db='bd_universitaire')\n\n\napp = Flask(__name__)\nProfileUtilisateur =  {}\n@app.route(\"/\")\ndef main():\n    return render_template('index.html')\n\n@app.route('/', methods=['GET','POST'])\ndef login():\n\n    if request.method == 'GET':\n        pass\n    if request.method == 'POST':\n        global idul\n        idul = '\"'+request.form.get('username')+'\"'\n        passe = makehash(request.form.get('password'))\n        cmd = 'SELECT motDePasse FROM Etudiant WHERE idul='+idul+';'\n        cur = conn.cursor()\n        cur.execute(cmd)\n        passeVrai = cur.fetchone()\n        if (passeVrai != None) and (passe == passeVrai[0]):\n            cmd = 'SELECT * FROM Etudiant WHERE idul='+idul+';'\n            cur = conn.cursor()\n            cur.execute(cmd)\n            info = cur.fetchone()\n\n\n            return render_template('Sanstitre-2.html')\n        return render_template('index.html', msg=\"Informations invalides!\")\n\n@app.route('//register', methods=['GET', 'POST'])\ndef register():\n\n    msg = ''\n    # Check if \"username\", \"password\" and \"email\" POST requests exist (user submitted form)\n    if request.method == 'POST' and 'username' in request.form and 'password' in request.form :\n        # Create variables for easy access\n        idul = \"'\" + request.form.get('username') + \"'\"\n        passe = \"'\" + makehash(request.form.get('password')) + \"'\"\n        password = request.form.get('password')\n        credit = request.form.get('credit')\n        nom = \"'\" + request.form.get('nom') + \"'\"\n        sigleProgramme = \"'\" + request.form.get('sigleProgramme') + \"'\"\n        global motivation\n        motivation = 5\n\n        cmd = 'SELECT * FROM Etudiant WHERE idul='+ idul +';'\n        cur = conn.cursor()\n        cur.execute(cmd)\n        etudiant = cur.fetchone()\n        # If account exists show error and validation checks\n        if etudiant:\n            msg = 'Account already exists!'\n\n        else:\n            # Account doesnt exists and the form data is valid, now insert new account into accounts table\n            cmd='INSERT INTO Etudiant VALUES '+'('+ idul +','+ nom +','+ passe +','+ str(motivation) +',' +str(credit)+ ',' + sigleProgramme+ ')'+ ';'\n            cur = conn.cursor()\n            cur.execute(cmd)\n            conn.commit()\n            print (cmd)\n            msg = 'You have successfully registered!'\n\n    elif request.method == 'POST':\n        # Form is empty... (no POST data)\n        msg = 'Please fill out the form!'\n    # Show registration form with message (if any)\n    return render_template('register.html', msg=msg)\n\n@app.route(\"//Cours/Acceuil\")\ndef Acceuil():\n    return render_template('Sanstitre-2.html')\n\n@app.route(\"//Cours\")\ndef Cours():\n    cmd = 'SELECT c.nom FROM Cours c, Suivre s WHERE s.idul=' + idul + 'and c.sigleCours= s.sigleCours ;'\n    cur = conn.cursor()\n    cur.execute(cmd)\n\n    info = cur.fetchall()\n    global info1,info2,info3,info3,info4,info5,info5\n    info1 = str(info[0])[2:-3]\n    info2 = str(info[1])[2:-3]\n    info3 = str(info[2])[2:-3]\n    info4 = str(info[3])[2:-3]\n    info5 = str(info[4])[2:-3]\n    info6 = str(info[5])[2:-3]\n\n\n\n\n    print(info)\n    return render_template('Sanstitre-3.html', cours01=info1,cours02=info2,cours03=info3,cours04=info4,cours05=info5,cours06=info6)\n@app.route(\"//Cours/Calul\")\ndef Cours1():\n    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + \"'\" +info1 +\"'\"+ ';'\n    cur = conn.cursor()\n    cur.execute(cmd)\n    sigleCours = str(cur.fetchone())[2:-3]\n\n    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +\"'\" +sigleCours +\"'\"+ 'and n.idul = '+idul+';'\n    print(cmd)\n    cur = conn.cursor()\n    cur.execute(cmd)\n    note = cur.fetchall()\n    note1 = []\n    nbr_exam =[]\n    for i in range((len(note))):\n        note1.append(str(note[i])[1:-2])\n    print(note)\n\n    for i in range((len(note))):\n        nbr_exam.append(\"NOTE\"+str(i+1))\n\n\n\n\n\n\n\n    bar_labels=labels\n    bar_values=values\n    return render_template('graphique.html', max=100, labels=nbr_exam, values=note1,title=info1)\n@app.route(\"//Cours/Calul2\")\ndef Cours2():\n    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + \"'\" +info2+\"'\"+ ';'\n    cur = conn.cursor()\n    cur.execute(cmd)\n    sigleCours = str(cur.fetchone())[2:-3]\n\n    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +\"'\" +sigleCours +\"'\"+ 'and n.idul = '+idul+';'\n    print(cmd)\n    cur = conn.cursor()\n    cur.execute(cmd)\n    note = cur.fetchall()\n    note1 = []\n    nbr_exam =[]\n    for i in range((len(note))):\n        note1.append(str(note[i])[1:-2])\n    print(note)\n\n    for i in range((len(note))):\n        nbr_exam.append(\"NOTE\"+str(i+1))\n\n\n\n    bar_labels=labels\n    bar_values=values\n    return render_template('graphique.html', max=100, labels=nbr_exam, values=note1, title=info2)\n\n@app.route(\"//Cours/Calul3\")\ndef Cours3():\n    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + \"'\" +info3+\"'\"+ ';'\n    cur = conn.cursor()\n    cur.execute(cmd)\n    sigleCours = str(cur.fetchone())[2:-3]\n\n    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +\"'\" +sigleCours +\"'\"+ 'and n.idul = '+idul+';'\n    print(cmd)\n    cur = conn.cursor()\n    cur.execute(cmd)\n    note = cur.fetchall()\n    note1 = []\n    nbr_exam =[]\n    for i in range((len(note))):\n        note1.append(str(note[i])[1:-2])\n    print(note)\n\n    for i in range((len(note))):\n        nbr_exam.append(\"NOTE\"+str(i+1))\n\n\n\n\n\n\n\n    bar_labels=labels\n    bar_values=values\n    return render_template('graphique.html', max=100, labels=nbr_exam, values=note1, title=info3)\n\n\n\n@app.route(\"//Cours/Calul4\")\ndef Cours4():\n    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + \"'\" +info4+\"'\"+ ';'\n    cur = conn.cursor()\n    cur.execute(cmd)\n    sigleCours = str(cur.fetchone())[2:-3]\n\n    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +\"'\" +sigleCours +\"'\"+ 'and n.idul = '+idul+';'\n    print(cmd)\n    cur = conn.cursor()\n    cur.execute(cmd)\n    note = cur.fetchall()\n    note1 = []\n    nbr_exam =[]\n    for i in range((len(note))):\n        note1.append(str(note[i])[1:-2])\n    print(note)\n\n    for i in range((len(note))):\n        nbr_exam.append(\"NOTE\"+str(i+1))\n\n\n\n\n\n\n\n    bar_labels=labels\n    bar_values=values\n    return render_template('graphique.html', max=100, labels=nbr_exam, values=note1, title=info4)\n\n\n@app.route(\"//Cours/Calul5\")\ndef Cours5():\n    cmd = 'SELECT c.sigleCours FROM Cours c WHERE c.nom=' + \"'\" +info5+\"'\"+ ';'\n    cur = conn.cursor()\n    cur.execute(cmd)\n    sigleCours = str(cur.fetchone())[2:-3]\n\n    cmd = 'SELECT n.note FROM Note n  WHERE n.sigleCours =' +\"'\" +sigleCours +\"'\"+ 'and n.idul = '+idul+';'\n    print(cmd)\n    cur = conn.cursor()\n    cur.execute(cmd)\n    note = cur.fetchall()\n    note1 = []\n    nbr_exam =[]\n    for i in range((len(note))):\n        note1.append(str(note[i])[1:-2])\n    print(note)\n\n    for i in range((len(note))):\n        nbr_exam.append(\"NOTE\"+str(i+1))\n\n\n\n\n\n\n\n    bar_labels=labels\n    bar_values=values\n    return render_template('graphique.html', max=100, labels=nbr_exam, values=note1, title=info5)\n\n@app.route(\"//Cours/Profile\")\ndef Profile():\n\n    cmd = 'SELECT p.nom FROM Programme p, Etudiant e WHERE e.idul=' + idul +  'and e.sigleProgramme = p.sigleProgramme;'\n    cur = conn.cursor()\n    cur.execute(cmd)\n    nomProg = str(cur.fetchone())[2:-3]\n    motivation = 5\n\n    return render_template('profile.html', prog=nomProg, motiv=motivation)\n\n\n\n\n\nif __name__ == \"__main__\":\n    app.run()
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- bd_universitaire/app.py	(revision ccbf39a872c2774b563b0d5420c13a01ded9ee96)
++++ bd_universitaire/app.py	(date 1588689033307)
+@@ -304,12 +304,10 @@
+     cur.execute(cmd)
+     nomProg = str(cur.fetchone())[2:-3]
+     motivation = 5
+-
+     return render_template('profile.html', prog=nomProg, motiv=motivation)
+ 
+ 
+ 
+ 
+-
+ if __name__ == "__main__":
+     app.run()
+\ No newline at end of file
+Index: bd_universitaire/templates/profile.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>Profil</title>\n    <link rel=\"stylesheet\" href=\"../static/bootstrap-4.3.1.css\">\n\t  <link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.7.1/css/all.css\">\n    <style type=\"text/css\">\n    .connection {\n}\n    </style>\n  </head>\n  <body>\n<header>\n\t<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n      </button>\n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"{{ url_for('Acceuil') }}\">Acceuil <span class=\"sr-only\">(current)</span></a>\n          </li>\n          <li class=\"nav-item\">\n            <a class=\"nav-link\" href=\"{{ url_for('Profile') }}\">Mon Compte</a>\n          </li>\n          <li class=\"nav-item dropdown\">\n            <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n              <a class=\"dropdown-item\" href=\"#\">Action</a>\n              <a class=\"dropdown-item\" href=\"#\">Another action</a>\n              <div class=\"dropdown-divider\"></div>\n              <a class=\"dropdown-item\" href=\"#\">Something else here</a>\n            </div>\n          </li>\n        </ul>\n        <form class=\"form-inline my-2 my-lg-0\">\n          <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Recherche\" aria-label=\"Search\">\n          <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>\n        </form>\n      </div>\n    </nav>\n  <script src=\"./js/jquery-3.3.1.min.js\"></script>\n<div class=\"jumbotron\">\n    <div class=\"container\">\n          <div class=\"row\">\n            <div class=\"col-12\">\n              <h1 class=\"text-center\"><strong>Mon Profil&nbsp; &nbsp;</strong></h1>\n              <section class=\"intro\">\n    \n<div class=\"column\">\n      <p  class=\"text-center\">Programme : {{prog}}</p>\n      <p  class=\"text-center\">Année d'étude: 2020</p>\n      <p  class=\"text-center\">Nombre de crédit cours: 18 crédits </p>\n      <p  class=\"text-center\">Motivation actuelle : {{motiv}} </p>\n\n    </div>\n  </section>\n            </div>\n          </div>\n        </div>\n  </div>\n</header>\n    \n    \n    <footer class=\"text-center\">\n\t\t<p class=\"text-center\"><a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Modifier votre profil</a> </p>\n    <p class=\"text-center\"><a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Déconnexion</a> </p>\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-12\">\n            <p>Copyright © Finalement on a pas dormi, All rights reserved.</p>\n          </div>\n        </div>\n      </div>\n    </footer>\n    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> \n    <script src=\"../static/jquery-3.3.1.min.js\"></script>\n    <!-- Include all compiled plugins (below), or include individual files as needed --> \n    <script src=\"../static/popper.min.js\"></script>\n    <script src=\"../static/bootstrap-4.3.1.js\"></script>\n  </body>\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- bd_universitaire/templates/profile.html	(revision ccbf39a872c2774b563b0d5420c13a01ded9ee96)
++++ bd_universitaire/templates/profile.html	(date 1588689080729)
+@@ -66,7 +66,7 @@
+     
+     <footer class="text-center">
+ 		<p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button">Modifier votre profil</a> </p>
+-    <p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button">Déconnexion</a> </p>
++    <p class="text-center"><a class="btn btn-primary btn-lg" href="{{ url_for('login') }}" role="button">Déconnexion</a> </p>
+       <div class="container">
+         <div class="row">
+           <div class="col-12">
+Index: bd_universitaire/templates/deconnexion.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- bd_universitaire/templates/deconnexion.html	(date 1588688483654)
++++ bd_universitaire/templates/deconnexion.html	(date 1588688483654)
+@@ -0,0 +1,31 @@
++<!DOCTYPE html>
++
++<html>
++	<head>
++		<meta charset="utf-8">
++		<title>Login</title>
++		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
++		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
++	</head>
++	<body>
++		<div class="login">
++			<h1>Login</h1>
++			<div class="links">
++				<a href="{{ url_for('login') }}" class="active">Login</a>
++				<a href="{{ url_for('register') }}">Register</a>
++			</div>
++			<form action="{{ url_for('login') }}" method="post">
++				<label for="username">
++					<i class="fas fa-user"></i>
++				</label>
++				<input type="text" name="username" placeholder="Username" id="username" required>
++				<label for="password">
++					<i class="fas fa-lock"></i>
++				</label>
++				<input type="password" name="password" placeholder="Password" id="password" required>
++				<div class="Vouz avez été déconnecter avec succès">{{ msg }}</div>
++				<input type="submit" value="Login">
++			</form>
++		</div>
++	</body>
++</html>
